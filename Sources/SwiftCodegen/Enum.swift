@@ -17,11 +17,7 @@ public class Enum: TypeSymbol {
 	
 	var baseTypes: [DataType] = []
 	var methods: [Method] = []
-	
-	public init (name: String, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
-		super.init(name, sourceReference, comment)
-	} 
-	
+		
 	public override func accept(visitor: CodeVisitor) {
 		visitor.visitEnum(self)
 	}

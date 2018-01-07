@@ -12,7 +12,7 @@
 // See http://www.apache.org/licenses/LICENSE-2.0 for license information
 //
 //===----------------------------------------------------------------------===//
-class Subroutine: Symbol {
+public class Subroutine: Symbol {
 	
 	var entryBlock: BasicBlock?
 	var returnBlock: BasicBlock?

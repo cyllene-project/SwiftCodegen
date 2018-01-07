@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Symbol.swift
+// VoidType.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,24 +13,11 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class Symbol : CodeNode {
+public class VoidType : DataType {
 	
-	public weak var parentSymbol: Symbol?
-	
-	public var name: String?
-	
-	public var deprecated: Bool = false
-
-	public var access: SymbolAccessibility = .public
-	
-	public var comment: Comment?
-	
-	public init (name: String?, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
+	public init(sourceReference: SourceReference? = nil) {
 		super.init()
-		self.name = name
 		self.sourceReference = sourceReference
-		self.comment = comment
 	}
-
 	
 }

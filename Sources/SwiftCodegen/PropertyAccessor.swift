@@ -15,7 +15,7 @@
 
 public class PropertyAccessor : Subroutine {
 
-	public var property: Property
+	public var property: Property?
 	
 	public var valueType: DataType?
 	
@@ -23,13 +23,13 @@ public class PropertyAccessor : Subroutine {
 	
 	public var writable: Bool
 	
-	public var automatic: Bool
+	public var automatic: Bool = true
 	
 	public init(readable: Bool, writable: Bool, valueType: DataType?, body: Block?, sourceReference: SourceReference?, comment: Comment? = nil) {
-		super.init(nil, sourceReference: sourceReference, comment: comment)
 		self.readable = readable
 		self.writable = writable
 		self.valueType = valueType
+		super.init(name: nil, sourceReference: sourceReference, comment: comment)
 		self.access = .public
 	}
 	

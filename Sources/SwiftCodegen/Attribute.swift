@@ -19,6 +19,7 @@ public class Attribute: CodeNode {
 	
 	public init(name: String, sourceReference: SourceReference? = nil) {
 		self.name = name
+		super.init()
 		self.sourceReference = sourceReference
 	}
 }

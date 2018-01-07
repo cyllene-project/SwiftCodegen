@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Class.swift
+// Package.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,39 +13,29 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class Class : ObjectTypeSymbol {
-	
-	public var baseClass: Class?
-	
-	var baseTypes: [DataType] = []
+public class Package : Symbol {
 
-	var methods: [Method] = []
-	var properties: [Property] = []
 	var classes: [Class] = []
+	var protocols: [Protocol] = []
+	var methods: [Method] = []
 	var structs: [Struct] = []
 	var enums: [Enum] = []
-	
-	var constructors: [Constructor] = []
-	
-	var destructor: Destructor?
+	var comments: [Comment] = []
+	var importDirectives: [ImportDirective] = []
 
-	
+	public init(name: String? = nil, sourceReference: SourceReference? = nil) {
+		super.init(name: name, sourceReference: sourceReference)
+		access = .public
+	}
+
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitClass(self)
+		visitor.visitPackage(self)
 	}
 	
 	public override func acceptChildren(visitor: CodeVisitor) {
 		
-		for type in baseTypes {
-			type.accept(visitor: visitor)
-		}
-		
 		for method in methods {
 			method.accept(visitor: visitor)
-		}
-		
-		for property in properties {
-			property.accept(visitor: visitor)
 		}
 		
 		for cls in classes {
@@ -60,11 +50,11 @@ public class Class : ObjectTypeSymbol {
 			enm.accept(visitor: visitor)
 		}
 		
-		for constructor in constructors {
-			constructor.accept(visitor: visitor)
+		for proto in protocols {
+			proto.accept(visitor: visitor)
 		}
 		
-		destructor?.accept(visitor: visitor)
 	}
-	
+
+
 }

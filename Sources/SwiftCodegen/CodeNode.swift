@@ -21,6 +21,8 @@ public class CodeNode {
 	
 	public var attributes: [Attribute] = []
 	
+	public init() { }
+	
 	public func accept(visitor: CodeVisitor) { }
 	
 	public func acceptChildren(visitor: CodeVisitor) { }

@@ -55,7 +55,7 @@ public class Struct: TypeSymbol {
 			constructor.accept(visitor: visitor)
 		}
 		
-		destructor.accept(visitor: visitor)
+		destructor?.accept(visitor: visitor)
 	}
 	
 	

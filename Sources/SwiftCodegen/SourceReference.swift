@@ -30,7 +30,7 @@ public class SourceReference {
 		importDirectives = file.currentImportDirectives
 	}
 	
-	public func toString() {
+	public func toString() -> String {
 		return ""  //"\file.getRelativeFilename:\begin.line.\begin.column-\end.line.\end.column"
 	}
 	

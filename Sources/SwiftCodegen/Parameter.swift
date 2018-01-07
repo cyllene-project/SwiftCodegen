@@ -16,18 +16,18 @@
 public class Parameter : Variable {
 
 
-	public var ellipsis: Bool
+	public var ellipsis: Bool = false
 	
-	public var captured: Bool
+	public var captured: Bool = false
 	
 	public init(name: String, variableType: DataType?, sourceReference: SourceReference? = nil) {
-		super.init(variableType: variableType, name: name, nil, sourceReference: sourceReference)
+		super.init(variableType: variableType, name: name, initializer: nil, sourceReference: sourceReference)
 		access = .public
 	}
 
 	public init(sourceReference: SourceReference? = nil) {
-		super.init(variableType: nil, name: nil, nil, sourceReference: sourceReference)
 		ellipsis = true
+		super.init(variableType: nil, name: nil, initializer: nil, sourceReference: sourceReference)
 		access = .public
 	}
 

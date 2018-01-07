@@ -15,13 +15,31 @@
 
 public protocol CodeVisitor {
 	
-	func visitClass(cls: Class)
+	func visitClass(_ cls: Class)
 	
-	func visitEnum(enm: Enum)
+	func visitEnum(_ enm: Enum)
 	
-	func visitProtocol(prtcl: Protocol)
+	func visitProtocol(_ prtcl: Protocol)
 	
-	func visitStruct(strct: Struct) 
+	func visitStruct(_ strct: Struct) 
+
+	func visitImportDirective(_ directive: ImportDirective) 
+
+	func visitConstructor(_ constructor: Constructor) 
+	
+	func visitDestructor(_ destructor: Destructor) 
+
+	func visitPackage(_ package: Package) 
+	
+	func visitParameter(_ param: Parameter) 
+	
+	func visitProperty(_ prop: Property) 
+
+	func visitPropertyAccessory(_ accessor: PropertyAccessor) 
+
+	func visitTypeParameter(_ param: TypeParameter) 
+
+	
 	
 	
 	

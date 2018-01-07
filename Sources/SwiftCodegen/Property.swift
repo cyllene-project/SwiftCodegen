@@ -15,7 +15,7 @@
 
 public class Property: Symbol {
 	
-	public var propertyType: DataType
+	public var propertyType: DataType?
 	
 	public var getAccessor: PropertyAccessor?
 	
@@ -24,30 +24,24 @@ public class Property: Symbol {
 	public var initializer: Expression?
 	
 	public init(name: String, propertyType: DataType?, getAccessor: PropertyAccessor?, setAccessor: PropertyAccessor?, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
-		super.init(name, sourceReference, comment);
 		self.propertyType = propertyType;
+		super.init(name: name, sourceReference: sourceReference, comment: comment);
 		self.getAccessor = getAccessor;
 		self.setAccessor = setAccessor;
 	}
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitProperty(property: self)
+		visitor.visitProperty(self)
 	}
 	
 	public override func acceptChildren(visitor: CodeVisitor) {
 		
-		propertyType.accept(visitor: visitor)
+		propertyType?.accept(visitor: visitor)
 		
-		if getAccessor != nil {
-			getAccessor.accept(visitor: visitor)
-		}
+		getAccessor?.accept(visitor: visitor)
+		
+		setAccessor?.accept(visitor: visitor)
 
-		if setAccessor != nil {
-			setAccessor.accept(visitor: visitor)
-		}
-
-		if initializer != nil {
-			initializer.accept(visitor: visitor)
-		}
+		initializer?.accept(visitor: visitor)
 	}
 }

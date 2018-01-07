@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Symbol.swift
+// Variable.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,24 +13,17 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class Symbol : CodeNode {
-	
-	public weak var parentSymbol: Symbol?
-	
-	public var name: String?
-	
-	public var deprecated: Bool = false
+public class Variable : Symbol {
 
-	public var access: SymbolAccessibility = .public
+	public var initializer: Expression?
 	
-	public var comment: Comment?
+	public var variableType: DataType?
 	
-	public init (name: String?, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
-		super.init()
-		self.name = name
-		self.sourceReference = sourceReference
-		self.comment = comment
+	public init(variableType:DataType?, name: String?, initializer: Expression? = nil, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
+		super.init(name: name, sourceReference: sourceReference, comment: comment)
+		self.variableType = variableType
+		self.initializer = initializer
 	}
 
-	
+
 }

@@ -19,7 +19,7 @@ public class Method: Subroutine {
 	
 	public var returnType: DataType
 	
-	public var hasResult: DataType {
+	public var hasResult: Bool {
 		get {
 			return !(returnType is VoidType)
 		}
@@ -27,11 +27,15 @@ public class Method: Subroutine {
 	
 	public var binding: MemberBinding = .instance
 	
-	public var overrides: Bool
+	public var overrides: Bool = false
 	
-	public var closure: Bool
+	public var closure: Bool = false
 	
 	var parameters: [Parameter] = []
 	
-	
+	public init(name: String?, returnType: DataType, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
+		self.returnType = returnType;
+		super.init(name: name, sourceReference: sourceReference, comment: comment);
+	}
+
 }

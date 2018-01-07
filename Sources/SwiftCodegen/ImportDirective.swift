@@ -17,11 +17,12 @@ public class ImportDirective : CodeNode {
 	
 	
 	public init(sourceReference: SourceReference? = nil) {
+		super.init()
 		self.sourceReference = sourceReference
 	}
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitImportDirective(directive: self)
+		visitor.visitImportDirective(self)
 	}
 	
 }

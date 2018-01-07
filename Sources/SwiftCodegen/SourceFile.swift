@@ -17,7 +17,7 @@ public class SourceFile {
 	
 	public var filename: String
 	
-	public weak var context: CodeContext
+	public weak var context: CodeContext?
 	
 	public var comments: [Comment] = []
 	

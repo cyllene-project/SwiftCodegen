@@ -20,13 +20,9 @@ public class Protocol: ObjectTypeSymbol {
 	var methods: [Method] = []
 	var properties: [Property] = []
 	
-	
-	public init (name: String, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
-		super.init(name, sourceReference, comment)
-	} 
 
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitProtocol(property: self)
+		visitor.visitProtocol(self)
 	}
 	
 	public override func acceptChildren(visitor: CodeVisitor) {
