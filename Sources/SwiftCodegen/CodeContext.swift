@@ -21,7 +21,12 @@ public class CodeContext {
 	
 	func accept(visitor: CodeVisitor) {
 		
-		self.root.accept(visitor: visitor)
+		root.accept(visitor: visitor)
+		
+		for file in sourceFiles {
+			file.accept(visitor: visitor)
+		}
+
 		
 	}
 	

@@ -27,4 +27,6 @@ public class CodeNode {
 	
 	public func acceptChildren(visitor: CodeVisitor) { }
 	
+	public func emit(writer: CodeWriter) { }
+	
 }

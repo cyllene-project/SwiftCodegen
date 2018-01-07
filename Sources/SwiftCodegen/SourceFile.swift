@@ -13,6 +13,8 @@
 //
 //===----------------------------------------------------------------------===//
 
+import Foundation
+
 public class SourceFile {
 	
 	public var filename: String
@@ -23,9 +25,32 @@ public class SourceFile {
 	
 	public var currentImportDirectives: [ImportDirective] = []
 	
+	public var nodes: [CodeNode] = []
+	
+	public var content = ""
+	
 	public init (context: CodeContext, filename: String) {
 		self.context = context
 		self.filename = filename
+	}
+	
+	public func write(toFile: String? = nil) throws {
+		
+		if toFile != nil {
+			try content.write(to: URL(fileURLWithPath: toFile!), atomically: true, encoding: String.Encoding.utf8)
+		} else {
+			try content.write(to: URL(fileURLWithPath: filename), atomically: true, encoding: String.Encoding.utf8)
+		}		
+	}
+	
+	public func accept(visitor: CodeVisitor) {
+		visitor.visitSourceFile(self)
+	}
+
+	public func acceptChildren(visitor: CodeVisitor) {
+		for node in nodes {
+			node.accept(visitor: visitor)
+		}
 	}
 	
 }
