@@ -67,17 +67,60 @@ public class CodeWriter : CodeVisitor {
 	public func writeNewline() {
 		sourceFile?.content += "\n"
 		bol = true
-		
 	}
 	
+		func writeBeginBlock() {
+		if !bol {
+			writeString(" ")
+		} else {
+			writeIndent()
+		}
+		writeString("{")
+		writeNewline()
+		indent += 1
+	}
 	
-	public func visitClass(_ cls: Class) {
-		if cls.comment != nil {
-			writeComment(comment: cls.comment!)
+	func writeEndBlock() {
+		indent -= 1
+		writeIndent()
+		writeString("}")
+	}
+
+	func writeIndent() {
+		if !bol {
+			writeNewline()
 		}
 		
+		for _ in 0..<indent {
+			writeString(tab)
+		}
+		
+		bol = false
+	}
+	
+	func writeComment(comment: Comment?) {
+		if comment == nil {
+			return
+		}
 		writeIndent()
-		writeString("\(cls.access) class \(cls.name!)")
+		writeString("/*")
+		writeString(comment!.content)
+		writeString("*/")
+	}
+	
+	func writeAccessibility(_ access: SymbolAccessibility) {
+		if access == .public {
+			return
+		}
+		writeString("\(access) ")
+	}
+	
+	public func visitClass(_ cls: Class) {
+		
+		writeComment(comment: cls.comment)
+		writeIndent()
+		writeAccessibility(cls.access)
+		writeString("class \(cls.name!)")
 		
 		if cls.baseClass != nil {
 			writeString(" : \(cls.baseClass!.name!)")
@@ -96,6 +139,10 @@ public class CodeWriter : CodeVisitor {
 			visitStruct(strct)
 		}
 		
+		for prop in cls.properties {
+			visitProperty(prop)
+		}
+		
 		for meth in cls.methods {
 			visitMethod(meth)
 		}
@@ -103,27 +150,24 @@ public class CodeWriter : CodeVisitor {
 		for enm in cls.enums {
 			visitEnum(enm)
 		}
-	}
-	
-	func writeBeginBlock() {
-		if !bol {
-			writeString(" ")
-		} else {
-			writeIndent()
-		}
-		writeString("{")
-		writeNewline()
-		indent += 1
-	}
-	
-	func writeEndBlock() {
-		indent -= 1
-		writeIndent()
-		writeString("}")
-	}
-	
-	public func visitEnum(_ enm: Enum) {
 		
+		writeEndBlock()
+		writeNewline()
+	}
+		
+	public func visitEnum(_ enm: Enum) {
+		writeComment(comment: enm.comment)
+		writeIndent()
+		writeAccessibility(enm.access)
+		writeString("enum \(enm.name!)")
+		
+		writeBeginBlock()
+		
+		writeEndBlock()
+	}
+	
+	public func visitEnumValue(_ value: EnumValue) {
+
 	}
 	
 	public func visitProtocol(_ prtcl: Protocol) {
@@ -167,25 +211,6 @@ public class CodeWriter : CodeVisitor {
 		for proto in package.protocols {
 			proto.accept(visitor: self)
 		} 
-	}
-	
-	func writeIndent() {
-		if !bol {
-			writeNewline()
-		}
-		
-		for _ in 0..<indent {
-			writeString(tab)
-		}
-		
-		bol = false
-	}
-	
-	func writeComment(comment: Comment) {
-		writeIndent()
-		writeString("/*")
-		writeString(comment.content)
-		writeString("*/")
 	}
 	
 	public func visitParameter(_ param: Parameter) {

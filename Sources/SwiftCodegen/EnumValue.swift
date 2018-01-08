@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Enum.swift
+// EnumValue.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,26 +13,27 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class Enum: TypeSymbol {
+public class EnumValue: Symbol {
 	
-	var baseTypes: [DataType] = []
-	var methods: [Method] = []
-	var values: [EnumValue] = []
+	var value: Expression?
+	var typeReference: DataType?
+	
+	
+	public init(name: String, typeReference: DataType?, value: Expression?, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
+		self.typeReference = typeReference
+		self.value = value
+		super.init(name: name, sourceReference: sourceReference, comment: comment)
+	}
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitEnum(self)
+		visitor.visitEnumValue(self)
 	}
-
+	
 	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		for type in baseTypes {
-			type.accept(visitor: visitor)
-		}
-		
-		for method in methods {
-			method.accept(visitor: visitor)
-		}
+		value?.accept(visitor: visitor)
 	}
-
+	
+	
+	
 	
 }

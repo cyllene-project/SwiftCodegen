@@ -42,6 +42,8 @@ public protocol CodeVisitor {
 	func visitSourceFile(_ file: SourceFile)
 
 	func visitMethod(_ method: Method)
+
+	func visitEnumValue(_ value: EnumValue)
 	
 	
 	
