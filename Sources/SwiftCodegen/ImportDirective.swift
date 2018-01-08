@@ -13,14 +13,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ImportDirective : CodeNode {
-	
-	
-	public init(sourceReference: SourceReference? = nil) {
-		super.init()
-		self.sourceReference = sourceReference
-	}
-	
+public class ImportDirective : Symbol {
+		
 	public override func accept(visitor: CodeVisitor) {
 		visitor.visitImportDirective(self)
 	}

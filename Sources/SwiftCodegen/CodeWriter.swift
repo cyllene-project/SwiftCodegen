@@ -179,27 +179,92 @@ public class CodeWriter : CodeVisitor {
 	}
 	
 	public func visitEnumValue(_ value: EnumValue) {
-
+		writeIndent()
+		writeString("case \(value.name!)")
+		writeNewline()
 	}
 	
 	public func visitProtocol(_ prtcl: Protocol) {
+		writeComment(comment: prtcl.comment)
+		writeIndent()
+		writeAccessibility(prtcl.access)
+		writeString("protocol \(prtcl.name!)")
 		
+		writeString(prtcl.prerequisites.isEmpty ? "" : ",")
+		if !prtcl.prerequisites.isEmpty {
+			writeString(" : ")
+		}
+		writeString(prtcl.prerequisites.map { t in t.dataType!.name! }.joined(separator:", "))
+		writeBeginBlock()
+				
+		for prop in prtcl.properties {
+			visitProperty(prop)
+		}
+		
+		for meth in prtcl.methods {
+			visitMethod(meth)
+		}
+				
+		writeEndBlock()
+		writeNewline()		
 	}
 	
 	public func visitStruct(_ strct: Struct) {
+		writeComment(comment: strct.comment)
+		writeIndent()
+		writeAccessibility(strct.access)
+		writeString("struct \(strct.name!)")
+		
+		if !strct.baseTypes.isEmpty {
+			writeString(" : ")
+		}
+		writeString(strct.baseTypes.map { t in t.dataType!.name! }.joined(separator:", "))
+		writeBeginBlock()
+		
+		for strct in strct.structs {
+			visitStruct(strct)
+		}
+		
+		for prop in strct.properties {
+			visitProperty(prop)
+		}
+		
+		for meth in strct.methods {
+			visitMethod(meth)
+		}
+		
+		for enm in strct.enums {
+			visitEnum(enm)
+		}
+		
+		writeEndBlock()
+		writeNewline()
 		
 	}
 
 	public func visitImportDirective(_ directive: ImportDirective) {
-		
+		writeIndent()
+		writeString("import \(directive.name!)")
+		writeNewline()
 	}
 
 	public func visitConstructor(_ constructor: Constructor) {
-		
+		writeComment(comment: constructor.comment)
+		writeIndent()
+		writeAccessibility(constructor.access)
+		writeString("init")
+		writeBeginBlock()
+		writeEndBlock()
+		writeNewline()	
+
 	}
 	
 	public func visitDestructor(_ destructor: Destructor) {
-		
+		writeIndent()
+		writeString("deinit ")
+		writeBeginBlock()
+		writeEndBlock()
+		writeNewline()	
 	}
 	
 	public func visitMethod(_ method: Method) {
