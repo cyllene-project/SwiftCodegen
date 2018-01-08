@@ -74,11 +74,12 @@ public class Class : ObjectTypeSymbol {
 		writer.writeNewline()
 		
 		for property in properties {
-			property.write(writer: writer)
+			//property.write(writer: writer)
 			writer.writeNewline()
 		}
 
-		writer.writeString("\n}")
+		writer.writeNewline()
+		writer.writeString("}")
 		writer.writeNewline()
 
 	}

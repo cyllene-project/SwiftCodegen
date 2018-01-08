@@ -19,6 +19,8 @@ public class CodeWriter : CodeVisitor {
 	var indent: Int = 0
 	
 	var bol: Bool = true
+	
+	var tab: String = "\t"
 
 	var sourceFile: SourceFile? 
 	
@@ -103,8 +105,36 @@ public class CodeWriter : CodeVisitor {
 			return
 		}
 		
+		for comment in package.comments {
+			writeComment(comment: comment)
+		}
 		
+		for cls in package.classes {
+			cls.accept(visitor: self)
+		} 
 		
+		for proto in package.protocols {
+			proto.accept(visitor: self)
+		} 
+	}
+	
+	func writeIndent() {
+		if !bol {
+			writeNewline()
+		}
+		
+		for _ in 0..<indent {
+			writeString(tab)
+		}
+		
+		bol = false
+	}
+	
+	func writeComment(comment: Comment) {
+		writeIndent()
+		writeString("/*")
+		writeString(comment.content)
+		writeString("*/")
 	}
 	
 	public func visitParameter(_ param: Parameter) {
