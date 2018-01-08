@@ -40,6 +40,8 @@ public protocol CodeVisitor {
 	func visitTypeParameter(_ param: TypeParameter) 
 
 	func visitSourceFile(_ file: SourceFile)
+
+	func visitMethod(_ method: Method)
 	
 	
 	

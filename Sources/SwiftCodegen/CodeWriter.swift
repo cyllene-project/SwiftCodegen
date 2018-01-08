@@ -72,7 +72,54 @@ public class CodeWriter : CodeVisitor {
 	
 	
 	public func visitClass(_ cls: Class) {
+		if cls.comment != nil {
+			writeComment(comment: cls.comment!)
+		}
 		
+		writeIndent()
+		writeString("\(cls.access) class \(cls.name!)")
+		
+		if cls.baseClass != nil {
+			writeString(" : \(cls.baseClass!.name!)")
+			writeString(cls.baseTypes.isEmpty ? "" : ",")
+		} else if !cls.baseTypes.isEmpty {
+			writeString(" : ")
+		}
+		writeString(cls.baseTypes.map { t in t.dataType!.name! }.joined(separator:", "))
+		writeBeginBlock()
+		
+		for kls in cls.classes {
+			visitClass(kls)
+		}
+		
+		for strct in cls.structs {
+			visitStruct(strct)
+		}
+		
+		for meth in cls.methods {
+			visitMethod(meth)
+		}
+		
+		for enm in cls.enums {
+			visitEnum(enm)
+		}
+	}
+	
+	func writeBeginBlock() {
+		if !bol {
+			writeString(" ")
+		} else {
+			writeIndent()
+		}
+		writeString("{")
+		writeNewline()
+		indent += 1
+	}
+	
+	func writeEndBlock() {
+		indent -= 1
+		writeIndent()
+		writeString("}")
 	}
 	
 	public func visitEnum(_ enm: Enum) {
@@ -97,6 +144,10 @@ public class CodeWriter : CodeVisitor {
 	
 	public func visitDestructor(_ destructor: Destructor) {
 		
+	}
+	
+	public func visitMethod(_ method: Method) {
+
 	}
 
 	public func visitPackage(_ package: Package) {
