@@ -13,13 +13,31 @@
 //
 //===----------------------------------------------------------------------===//
 
+import Foundation
+
 public class CodeContext {
 		
-	var root = Package()
+	public var root = Package()
 	
 	public var sourceFiles: [SourceFile] = []  
 	
-	func accept(visitor: CodeVisitor) {
+	var sourceFilePaths: [String] = []
+	
+	public func add(sourceFile: SourceFile) {
+		sourceFiles.append(sourceFile)
+	}
+	
+	public func add(filename: String) {
+		
+		if !FileManager.default.fileExists(atPath: filename) || sourceFilePaths.contains(filename) {
+			return
+		}
+		
+		sourceFiles.append(SourceFile(context: self, filename: filename))
+		sourceFilePaths.append(filename)
+	}
+	
+	public func accept(visitor: CodeVisitor) {
 		
 		root.accept(visitor: visitor)
 		
@@ -27,7 +45,6 @@ public class CodeContext {
 			file.accept(visitor: visitor)
 		}
 
-		
 	}
 	
 	

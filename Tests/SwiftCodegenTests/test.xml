@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package name="test">
+	<class>
+		<name>TestClass</name>
+		<properties>
+			<property name="testProperty"></property>
+		</properties>
+	</class>
+</package>

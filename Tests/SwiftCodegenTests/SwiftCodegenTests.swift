@@ -2,15 +2,21 @@ import XCTest
 @testable import SwiftCodegen
 
 class SwiftCodegenTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(SwiftCodegen().text, "Hello, World!")
-    }
+	
+	func testExample() {
+		
+		let context = CodeContext()
+		let bundle = Bundle(path: (".") + "/Tests/SwiftCodegenTests") ?? Bundle.main
+		let path = bundle.path(forResource: "test", ofType: "xml")!
+		context.add(filename: path)
+		let parser = TestParser()
+		parser.parse(context: context)
+		
+
+	}
 
 
-    static var allTests = [
-        ("testExample", testExample),
-    ]
+	static var allTests = [
+		("testExample", testExample),
+	]
 }

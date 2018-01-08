@@ -29,7 +29,7 @@ public class CodeWriter : CodeVisitor {
 	}
 
 
-	public func writeFile(context:CodeContext, fileName: String) throws {
+	public func writeFile(file: SourceFile, fileName: String) throws {
 
 		
 		let fileManager = FileManager.default
