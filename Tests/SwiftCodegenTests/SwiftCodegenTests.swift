@@ -11,7 +11,8 @@ class SwiftCodegenTests: XCTestCase {
 		context.add(filename: path)
 		let parser = TestParser()
 		parser.parse(context: context)
-		
+		let writer = CodeWriter(context: context)
+		context.accept(visitor: writer)
 
 	}
 
