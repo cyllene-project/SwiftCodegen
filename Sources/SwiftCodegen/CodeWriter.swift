@@ -163,6 +163,18 @@ public class CodeWriter : CodeVisitor {
 		
 		writeBeginBlock()
 		
+		for value in enm.values {
+			visitEnumValue(value)
+		}
+		
+		for prop in enm.properties {
+			visitProperty(prop)
+		}
+		
+		for meth in enm.methods {
+			visitMethod(meth)
+		}
+		
 		writeEndBlock()
 	}
 	

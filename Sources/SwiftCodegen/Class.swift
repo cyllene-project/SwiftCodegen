@@ -65,23 +65,5 @@ public class Class : ObjectTypeSymbol {
 		}
 		
 		destructor?.accept(visitor: visitor)
-	}
-	
-	public override func emit(writer: CodeWriter) {
-		
-		writer.writeString("\(access) class \(name!)")
-		writer.writeString(" {\n")
-		writer.writeNewline()
-		
-		for property in properties {
-			//property.write(writer: writer)
-			writer.writeNewline()
-		}
-
-		writer.writeNewline()
-		writer.writeString("}")
-		writer.writeNewline()
-
-	}
-	
+	}	
 }

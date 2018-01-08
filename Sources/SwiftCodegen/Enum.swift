@@ -18,6 +18,7 @@ public class Enum: TypeSymbol {
 	var baseTypes: [DataType] = []
 	var methods: [Method] = []
 	var values: [EnumValue] = []
+	var properties: [Property] = []
 	
 	public override func accept(visitor: CodeVisitor) {
 		visitor.visitEnum(self)
