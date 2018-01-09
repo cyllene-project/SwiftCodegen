@@ -55,24 +55,42 @@ class ProtocolParser: CodeVisitor, XMLParserDelegate {
 		parser?.parse()
 	}
 	
+	func createPackage(name: String) {
+		server.package = Package(name: name)
+		server.sourceFile = SourceFile(context: context!, server.package.name + "Server.swift")
+		server.currentSymbol = server.package
+		client.package = Package(name: name)
+		client.sourceFile = SourceFile(context: context!, client.package.name + "Client.swift")
+		client.currentSymbol = client.package
+	}
+
+	func createProtocol(name: String) {
+		server.currentProtocol = Procotol(name: name)
+		server.currentSymbol = server.currentProtocol
+		server.package?.protocols.append(server.currentProtocol)
+		client.currentProtocol = Protocol(name: name)
+		client.currentSymbol = client.currentProtocol
+		client.package?.protocols.append(client.currentProtocol)
+	}
+	
+	func createRequest(name: String) {
+		client.currentMethod = Method(name: name)
+		client.currentSymbol = client.currentMethod
+		client.currentProtocol?.methods.append(client.currentMethod)
+	}
+	
 	func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
 		
-		switch elementName {	
+		switch elementName {
 		case "protocol":
-			server.package = Package(name: attributeDict["name"]!.capitalizingFirstLetter())
-			server.sourceFile = SourceFile(context: context!, server.package.name + "Server.swift")
-			client.package = Package(name: attributeDict["name"]!.capitalizingFirstLetter())
-			client.sourceFile = SourceFile(context: context!, client.package.name + "Client.swift")
+			createPackage(name: attributeDict["name"]!.capitalizingFirstLetter())
 		case "copyright", "description" :
 			return
 			//currentPackage?.comment = Comment()
 		case "interface":
-			currentSymbol = Protocol(name: attributeDict["name"]!)		
+			createProtocol(name: attributeDict["name"]!)		
 		case "request":
-			let meth = Method(name: attributeDict["name"]!)
-			let proto = currentSymbol as! Protocol? 
-			proto?.methods.append(meth)
-			currentSymbol = meth
+			createRequest(name: attributeDict["name"]!)
 		case "arg":
 			return
 		case "event":
@@ -83,10 +101,6 @@ class ProtocolParser: CodeVisitor, XMLParserDelegate {
 			return
 		default:
 			return
-		}
-		
-		if currentSymbol != nil {
-			sourceFile!.nodes.append(currentSymbol!)
 		}
 	}
 	
