@@ -17,9 +17,9 @@ public class Comment {
 	
 	public var content: String
 	
-	public var sourceReference: SourceReference
+	public var sourceReference: SourceReference?
 	
-	public init(comment: String, sourceReference: SourceReference) {
+	public init(comment: String, sourceReference: SourceReference? = nil) {
 		self.sourceReference = sourceReference
 		content = comment
 	}

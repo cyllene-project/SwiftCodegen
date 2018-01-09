@@ -16,8 +16,22 @@ class SwiftCodegenTests: XCTestCase {
 
 	}
 
+	func testWayland() {
+		
+		let context = CodeContext()
+		let bundle = Bundle(path: (".") + "/Tests/SwiftCodegenTests") ?? Bundle.main
+		let path = bundle.path(forResource: "wayland", ofType: "xml")!
+		context.add(filename: path)
+		let parser = ProtocolParser()
+		parser.parse(context: context)
+		let writer = CodeWriter(context: context)
+		context.accept(visitor: writer)
+
+	}
+
 
 	static var allTests = [
 		("testExample", testExample),
+		("testWayland", testWayland),
 	]
 }

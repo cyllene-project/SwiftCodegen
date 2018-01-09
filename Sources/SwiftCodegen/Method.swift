@@ -25,6 +25,8 @@ public class Method: Subroutine {
 		}
 	}
 	
+	public var isAbstract = false
+	
 	public var binding: MemberBinding = .instance
 	
 	public var overrides: Bool = false
@@ -33,8 +35,8 @@ public class Method: Subroutine {
 	
 	var parameters: [Parameter] = []
 	
-	public init(name: String?, returnType: DataType, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
-		self.returnType = returnType;
+	public init(name: String?, returnType: DataType? = nil, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
+		self.returnType = returnType ?? VoidType();
 		super.init(name: name, sourceReference: sourceReference, comment: comment);
 	}
 

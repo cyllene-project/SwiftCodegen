@@ -15,10 +15,11 @@
 
 public class Protocol: ObjectTypeSymbol {
 	
-	var prerequisites: [DataType] = []
+	public var prerequisites: [DataType] = []
 	
-	var methods: [Method] = []
-	var properties: [Property] = []
+	public var methods: [Method] = []
+	
+	public var properties: [Property] = []
 	
 
 	public override func accept(visitor: CodeVisitor) {

@@ -90,6 +90,7 @@ public class CodeWriter : CodeVisitor {
 		indent -= 1
 		writeIndent()
 		writeString("}")
+		writeNewline()
 	}
 
 	func writeIndent() {
@@ -115,7 +116,7 @@ public class CodeWriter : CodeVisitor {
 	}
 	
 	func writeAccessibility(_ access: SymbolAccessibility) {
-		if access == .public {
+		if access == .internal {
 			return
 		}
 		writeString("\(access) ")
@@ -126,7 +127,7 @@ public class CodeWriter : CodeVisitor {
 		writeComment(comment: cls.comment)
 		writeIndent()
 		writeAccessibility(cls.access)
-		writeString("class \(cls.name)")
+		writeString("class \(cls.name!)")
 		
 		if cls.baseClass != nil {
 			writeString(" : \(cls.baseClass!.name!)")
@@ -274,6 +275,13 @@ public class CodeWriter : CodeVisitor {
 	}
 	
 	public func visitMethod(_ method: Method) {
+		writeIndent()
+		writeAccessibility(method.access)
+		writeString("func \(method.name!)")
+		
+		if method.hasResult {
+			writeString(" -> \(method.returnType.dataType!.name!) ")
+		}
 
 	}
 
