@@ -23,6 +23,10 @@ public class Property: Symbol {
 	
 	public var initializer: Expression?
 	
+	public var `lazy` = false
+	
+	public var `static` = false
+	
 	public init(name: String, propertyType: DataType?, getAccessor: PropertyAccessor?, setAccessor: PropertyAccessor?, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
 		self.propertyType = propertyType;
 		super.init(name: name, sourceReference: sourceReference, comment: comment);

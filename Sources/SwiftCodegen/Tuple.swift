@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// Tuple.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -12,14 +12,9 @@
 // See http://www.apache.org/licenses/LICENSE-2.0 for license information
 //
 //===----------------------------------------------------------------------===//
-
-public class ArrayType: CollectionType {
+public class Tuple: CodeNode {
 	
+	public var dataTypes: [DataType] = []
 	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		elementType.accept(visitor: visitor)
-	}
-
 	
 }

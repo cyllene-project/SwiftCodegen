@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// EnumValue.swift
+// Assignment.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,27 +13,28 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class EnumValue: Symbol {
+public class Assignment: Expression {
 	
-	var value: Expression?
-	var typeReference: DataType?
-	var `indirect`: Bool = false
+	public var `left`: Expression
 	
-	public init(name: String, typeReference: DataType?, value: Expression?, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
-		self.typeReference = typeReference
-		self.value = value
-		super.init(name: name, sourceReference: sourceReference, comment: comment)
+	public var `operator`: AssignmentOperator
+	
+	public var `right`: Expression
+
+	public init(`left`: Expression, `right`: Expression, `operator`: AssignmentOperator = .simple, sourceReference: SourceReference? = nil) {
+		self.`left` = `left`
+		self.`operator` = `operator`
+		self.`right` = `right`
+		self.sourceReference = sourceReference
 	}
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitEnumValue(self)
+		visitor.visitAssignment(self)
+		visitor.visitExpression(self)
 	}
 	
 	public override func acceptChildren(visitor: CodeVisitor) {
-		value?.accept(visitor: visitor)
+		`left`.accept(visitor: visitor)
+		`right`.accept(visitor: visitor)
 	}
-	
-	
-	
-	
 }

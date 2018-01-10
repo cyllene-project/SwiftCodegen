@@ -15,6 +15,8 @@
 
 public class Constructor: Subroutine {
 	
+	public var `convenience` = false
+	
 	public override func accept(visitor: CodeVisitor) {
 		visitor.visitConstructor(self)
 	}

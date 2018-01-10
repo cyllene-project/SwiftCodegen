@@ -29,6 +29,7 @@ public class Class : ObjectTypeSymbol {
 	
 	var destructor: Destructor?
 
+	public var `final` = false
 	
 	public override func accept(visitor: CodeVisitor) {
 		visitor.visitClass(self)

@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// PropertyObserver.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,13 +13,13 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ArrayType: CollectionType {
+public class PropertyObserver: Subroutine {
 	
+	public var observerType: PropertyObserverType
 	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		elementType.accept(visitor: visitor)
-	}
+}
 
-	
+public enum PropertyObserverType {
+	case `willSet`
+	case `didSet`
 }

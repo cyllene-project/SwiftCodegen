@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// Function.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,12 +13,14 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ArrayType: CollectionType {
+public class Function: Subroutine {
 	
+	public var `final` = false
+
 	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		elementType.accept(visitor: visitor)
+	public init(name: String?, returnType: DataType? = nil, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
+		self.returnType = returnType ?? VoidType();
+		super.init(name: name, sourceReference: sourceReference, comment: comment);
 	}
 
 	

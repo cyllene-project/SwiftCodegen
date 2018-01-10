@@ -33,6 +33,12 @@ public class Method: Subroutine {
 	
 	public var closure: Bool = false
 	
+	public var `mutating` = false
+	
+	public var typeMethod = false
+	
+	public var `final` = false
+	
 	var parameters: [Parameter] = []
 	
 	public init(name: String?, returnType: DataType? = nil, sourceReference: SourceReference? = nil, comment: Comment? = nil) {

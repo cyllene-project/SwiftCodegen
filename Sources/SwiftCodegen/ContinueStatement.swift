@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// ContinueStatement.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,13 +13,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ArrayType: CollectionType {
+public class ContinueStatement: CodeNode {
 	
-	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		elementType.accept(visitor: visitor)
-	}
-
-	
+	public var label: Label?
 }

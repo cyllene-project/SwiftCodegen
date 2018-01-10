@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// UnaryOperator.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,13 +13,9 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ArrayType: CollectionType {
-	
-	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		elementType.accept(visitor: visitor)
-	}
-
+public enum UnaryOperator {
+	case plus
+	case minus
+	case unwrap
 	
 }

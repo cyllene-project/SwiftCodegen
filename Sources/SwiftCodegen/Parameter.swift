@@ -15,12 +15,18 @@
 
 public class Parameter : Variable {
 
+	public var label: ArgumentLabel?
 
 	public var ellipsis: Bool = false
 	
 	public var captured: Bool = false
 	
-	public init(name: String, variableType: DataType?, sourceReference: SourceReference? = nil) {
+	public var omitName: Bool = false
+	
+	public var isInout: Bool = false
+	
+	public init(name: String, variableType: DataType?, label: ArgumentLabel? = nil, sourceReference: SourceReference? = nil) {
+		self.label = label
 		super.init(variableType: variableType, name: name, initializer: nil, sourceReference: sourceReference)
 		access = .public
 	}

@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// ForInStatement.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,13 +13,23 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ArrayType: CollectionType {
+public class ForInStatement: Block {
 	
+	public var typeReference: DataType?
 	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		elementType.accept(visitor: visitor)
+	public var variableName: String
+	
+	public var collection: Expression
+	
+	public var body: Block
+	
+	public init(typeReference: DataType?, variableName: String, collection: Expression, body: Block, sourceReference: SourceReference? = nil) {
+		self.typeReference = typeReference
+		self.variableName = variableName		
+		self.collection = collection		
+		self.body = body
+		super.init()
 	}
-
+	
 	
 }

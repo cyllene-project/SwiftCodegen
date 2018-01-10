@@ -15,13 +15,13 @@
 
 public class Package : Symbol {
 
-	var classes: [Class] = []
-	var protocols: [Protocol] = []
-	var methods: [Method] = []
-	var structs: [Struct] = []
-	var enums: [Enum] = []
-	var comments: [Comment] = []
-	var importDirectives: [ImportDirective] = []
+	public var classes: [Class] = []
+	public var protocols: [Protocol] = []
+	public var methods: [Method] = []
+	public var structs: [Struct] = []
+	public var enums: [Enum] = []
+	public var comments: [Comment] = []
+	public var importDirectives: [ImportDirective] = []
 
 	public init(name: String? = nil, sourceReference: SourceReference? = nil) {
 		super.init(name: name, sourceReference: sourceReference)

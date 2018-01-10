@@ -26,7 +26,7 @@ class ProtocolParser: CodeVisitor, XMLParserDelegate {
 		var currentProtocol: Protocol?
 		var currentMethod: Method?
 		var currentEnum: Enum?
-		var SourceFile: SourceFile?
+		var sourceFile: SourceFile?
 	}
 
 	var context: CodeContext?
@@ -57,26 +57,46 @@ class ProtocolParser: CodeVisitor, XMLParserDelegate {
 	
 	func createPackage(name: String) {
 		server.package = Package(name: name)
-		server.sourceFile = SourceFile(context: context!, server.package.name + "Server.swift")
+		server.sourceFile = SourceFile(context: context!, filename: server.package!.name! + "Server.swift")
 		server.currentSymbol = server.package
 		client.package = Package(name: name)
-		client.sourceFile = SourceFile(context: context!, client.package.name + "Client.swift")
+		client.sourceFile = SourceFile(context: context!, filename: client.package!.name! + "Client.swift")
 		client.currentSymbol = client.package
 	}
 
 	func createProtocol(name: String) {
-		server.currentProtocol = Procotol(name: name)
+		server.currentProtocol = Protocol(name: name)
 		server.currentSymbol = server.currentProtocol
-		server.package?.protocols.append(server.currentProtocol)
+		server.package?.protocols.append(server.currentProtocol!)
 		client.currentProtocol = Protocol(name: name)
 		client.currentSymbol = client.currentProtocol
-		client.package?.protocols.append(client.currentProtocol)
+		client.package?.protocols.append(client.currentProtocol!)
 	}
 	
 	func createRequest(name: String) {
 		client.currentMethod = Method(name: name)
 		client.currentSymbol = client.currentMethod
-		client.currentProtocol?.methods.append(client.currentMethod)
+		client.currentProtocol?.methods.append(client.currentMethod!)
+	}
+
+	func createEvent(name: String) {
+		server.currentMethod = Method(name: name)
+		server.currentSymbol = client.currentMethod
+		server.currentProtocol?.methods.append(client.currentMethod!)
+	}
+	
+	func createComment() {
+		server.currentSymbol!.comment = Comment(comment: "")
+		client.currentSymbol!.comment = Comment(comment: "")
+	}
+	
+	func createEnum(name: String) {
+		server.currentEnum = Enum(name: name)
+		server.currentSymbol = server.currentEnum
+		server.package?.enums.append(server.currentEnum!)
+		client.currentEnum = Enum(name: name)
+		client.currentSymbol = client.currentEnum
+		client.package?.enums.append(client.currentEnum!)
 	}
 	
 	func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
@@ -85,8 +105,7 @@ class ProtocolParser: CodeVisitor, XMLParserDelegate {
 		case "protocol":
 			createPackage(name: attributeDict["name"]!.capitalizingFirstLetter())
 		case "copyright", "description" :
-			return
-			//currentPackage?.comment = Comment()
+			createComment()
 		case "interface":
 			createProtocol(name: attributeDict["name"]!)		
 		case "request":
@@ -94,9 +113,9 @@ class ProtocolParser: CodeVisitor, XMLParserDelegate {
 		case "arg":
 			return
 		case "event":
-			currentSymbol = Method(name: attributeDict["name"]!)
+			createEvent(name: attributeDict["name"]!)
 		case "enum":
-			currentSymbol = Enum(name: currentSymbol!.name! + attributeDict["name"]!)
+			createEnum(name: attributeDict["name"]!)
 		case "entry":
 			return
 		default:
@@ -105,18 +124,16 @@ class ProtocolParser: CodeVisitor, XMLParserDelegate {
 	}
 	
 	func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+
 	}
 	
 	func parser(_ parser: XMLParser, foundCharacters string: String) {
-		if currentSymbol?.comment != nil {
-			currentSymbol!.comment?.content += string.trimmingCharacters(in: .whitespacesAndNewlines)
-			return
-		}
-		currentSymbol?.comment = Comment(comment: string)
+		server.currentSymbol!.comment?.content += string.trimmingCharacters(in: .whitespacesAndNewlines)
+		client.currentSymbol!.comment?.content += string.trimmingCharacters(in: .whitespacesAndNewlines)
 	}
 
 	func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-		print(parseError)
+
 	}
 
 }

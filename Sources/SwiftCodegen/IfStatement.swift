@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// IfStatement.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,13 +13,16 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ArrayType: CollectionType {
+public class IfStatement: CodeNode {
 	
+	public var condition: Expression
+	public var trueStatement: Block
+	public var falseStatement: Block?
 	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		elementType.accept(visitor: visitor)
+	public init(condition: Expression, trueStatement: Block, falseStatement: Block? = nil, sourceReference: SourceReference? = nil) {
+		self.condition = condition
+		self.trueStatement = trueStatement
+		self.falseStatement = falseStatement
+		self.sourceReference = sourceReference
 	}
-
-	
 }

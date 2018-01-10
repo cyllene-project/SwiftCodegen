@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// DictionaryType.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,13 +13,12 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ArrayType: CollectionType {
+public class DictionaryType: CollectionType {
 	
+	public var keyType: DataType
 	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		elementType.accept(visitor: visitor)
+	public init (keyType: DataType, elementType: DataType, sourceReference: SourceReference? = nil) {
+		self.keyType = elementType
+		super.init(elementType: elementType, sourceReference: sourceReference)
 	}
-
-	
 }

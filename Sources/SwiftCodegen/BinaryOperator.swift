@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// BinaryOperator.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,13 +13,26 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ArrayType: CollectionType {
-	
-	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		elementType.accept(visitor: visitor)
-	}
-
-	
+public enum BinaryOperator {
+	case `none`
+	case plus
+	case minus
+	case mul
+	case div
+	case mod
+	case shiftLeft
+	case shiftRight
+	case lessThan
+	case greaterThan
+	case lessThanOrEqual
+	case greaterThanOrEqual
+	case equality
+	case inequality
+	case bitwiseAnd
+	case bitwiseOr
+	case bitwiseXor
+	case and
+	case or
+	case `in`
+	case coalesce
 }

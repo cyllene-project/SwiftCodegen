@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// SwitchStatement.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,13 +13,15 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ArrayType: CollectionType {
+public class SwitchStatement: CodeNode {
 	
+	public expression: Expression
 	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		elementType.accept(visitor: visitor)
+	public sections: [SwitchSection] = []
+	
+	public init(expression: Expression, sourceReference: sourceReference? = nil) {
+		self.expression = expression
+		self.sourceReference = sourceReference 
 	}
-
 	
 }

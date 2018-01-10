@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// GuardStatement.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,13 +13,15 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ArrayType: CollectionType {
+public class GuardStatement: CodeNode, Statement {
 	
+	public var condition: Expression
+	public var elseStatement: Block
 	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		elementType.accept(visitor: visitor)
+	public init(condition: Expression, elseStatement: Block, sourceReference: SourceReference? = nil) {
+		self.condition = condition
+		self.elseStatement = trueStatement
+		self.sourceReference = sourceReference
 	}
 
-	
 }

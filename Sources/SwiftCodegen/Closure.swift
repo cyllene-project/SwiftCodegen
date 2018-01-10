@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// Closure.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,13 +13,21 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ArrayType: CollectionType {
+public class Closure: Expression {
 	
 	
-	public override func acceptChildren(visitor: CodeVisitor) {
+	public var expressionBody: Expression
+	
+	public var statementBody: Block?
+	
+	public var function: Function?
+	
+	var parameters: [Parameter]
+	
+	public init(expressionBody: Expression, sourceReference: SourceReference? = nil) {
+		self.expressionBody = expressionBody
+		self.sourceReference = sourceReference 
 		
-		elementType.accept(visitor: visitor)
 	}
-
 	
 }

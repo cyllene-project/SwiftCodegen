@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ArrayType.swift
+// SwitchLabel.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,13 +13,15 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ArrayType: CollectionType {
+public class SwitchLabel: CodeNode {
 	
+	public var expression: Expression
 	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		elementType.accept(visitor: visitor)
+	public weak var section: SwitchSection?
+	
+	public init(expression: Expression, sourceReference: SourceReference? = nil) {
+		self.expression = expression
+		self.sourceReference = sourceReference
 	}
-
 	
 }
