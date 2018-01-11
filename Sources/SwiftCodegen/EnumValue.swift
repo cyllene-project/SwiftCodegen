@@ -34,6 +34,9 @@ public class EnumValue: Symbol {
 	}
 	
 	
-	
-	
+	public override func emit<T: CodeWriter>(writer: T) {
+		writer.writeIndent()
+		writer.writeString("case \(name!)")
+		writer.writeNewline()
+	}
 }

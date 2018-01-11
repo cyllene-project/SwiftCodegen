@@ -25,7 +25,11 @@ public class Comment {
 	}
 	
 	public func emit(writer: CodeWriter) {
-		
+		writer.writeIndent()
+		writer.writeString("/*")
+		writer.writeString(content)
+		writer.writeString("*/")
+		writer.writeNewline()
 	}
 	
 }

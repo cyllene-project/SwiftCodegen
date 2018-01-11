@@ -21,4 +21,10 @@ public class ImportDirective : Symbol {
 		//visitor.visitImportDirective(self)
 	}
 	
+	public override func emit<T: CodeWriter>(writer: T) {
+		writer.writeIndent()
+		writer.writeString("import \(name!)")
+		writer.writeNewline()
+	}
+	
 }

@@ -58,5 +58,35 @@ public class Struct: TypeSymbol {
 		destructor?.accept(visitor: visitor)
 	}
 	
-	
+	public override func emit<T: CodeWriter>(writer: T) {
+		comment?.emit(writer: writer)
+		writer.writeIndent()
+		//writer.writeAccessibility(strct.access)
+		writer.writeString("struct \(name!)")
+		
+		if !baseTypes.isEmpty {
+			writer.writeString(" : ")
+		}
+		writer.writeString(baseTypes.map { t in t.dataType!.name! }.joined(separator:", "))
+		writer.writeBeginBlock()
+		
+		for strct in structs {
+			strct.emit(writer: writer)
+		}
+		
+		for prop in properties {
+			prop.emit(writer: writer)
+		}
+		
+		for meth in methods {
+			meth.emit(writer: writer)
+		}
+		
+		for enm in enums {
+			enm.emit(writer: writer)
+		}
+		
+		writer.writeEndBlock()
+		writer.writeNewline()
+	}
 }

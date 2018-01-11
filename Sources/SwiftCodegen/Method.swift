@@ -46,4 +46,14 @@ public class Method: Subroutine {
 		super.init(name: name, sourceReference: sourceReference, comment: comment);
 	}
 
+	public override func emit<T: CodeWriter>(writer: T) {
+		writer.writeIndent()
+		//writer.writeAccessibility(method.access)
+		writer.writeString("func \(name!)")
+		
+		if hasResult {
+			writer.writeString(" -> \(returnType.dataType!.name!) ")
+		}
+	}
+
 }

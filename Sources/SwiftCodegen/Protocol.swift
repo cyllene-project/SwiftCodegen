@@ -39,5 +39,30 @@ public class Protocol: ObjectTypeSymbol {
 		for property in properties {
 			property.accept(visitor: visitor)
 		}
-	}	
+	}
+	
+	public override func emit<T: CodeWriter>(writer: T) {
+		comment?.emit(writer: writer)
+		writer.writeIndent()
+		//writer.writeAccessibility(prtcl.access)
+		writer.writeString("protocol \(name!)")
+		
+		writer.writeString(prerequisites.isEmpty ? "" : ",")
+		if !prerequisites.isEmpty {
+			writer.writeString(" : ")
+		}
+		writer.writeString(prerequisites.map { t in t.dataType!.name! }.joined(separator:", "))
+		writer.writeBeginBlock()
+				
+		for prop in properties {
+			prop.emit(writer: writer)
+		}
+		
+		for meth in methods {
+			meth.emit(writer: writer)
+		}
+				
+		writer.writeEndBlock()
+		writer.writeNewline()
+	}
 }

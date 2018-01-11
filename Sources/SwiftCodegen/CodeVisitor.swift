@@ -17,6 +17,6 @@ public protocol CodeVisitor {
 
 	func visitSourceFile(_ file: SourceFile)
 	
-	func visitNode(_ node: CodeNode)
+	func visit<T: CodeNode>(_ node: T)
 	
 }

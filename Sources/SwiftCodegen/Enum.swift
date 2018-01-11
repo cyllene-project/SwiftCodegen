@@ -36,4 +36,27 @@ public class Enum: TypeSymbol {
 	}
 
 	
+	public override func emit<T: CodeWriter>(writer: T) {
+		comment?.emit(writer: writer)
+		writer.writeIndent()
+		//writer.writeAccessibility(enm.access)
+		writer.writeString("enum \(name!)")
+		
+		writer.writeBeginBlock()
+		
+		for value in values {
+			value.emit(writer: writer)
+		}
+		
+		for prop in properties {
+			prop.emit(writer: writer)
+		}
+		
+		for meth in methods {
+			meth.emit(writer: writer)
+		}
+		
+		writer.writeEndBlock()
+	}
+	
 }

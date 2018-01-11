@@ -24,4 +24,14 @@ public class Constructor: Subroutine {
 	public override func accept(visitor: CodeVisitor) {
 		//visitor.visitConstructor(self)
 	}
+	
+	public override func emit<T: CodeWriter>(writer: T) {
+		comment?.emit(writer: writer)
+		writer.writeIndent()
+		//writer.writeAccessibility(constructor.access)
+		writer.writeString("init")
+		writer.writeBeginBlock()
+		writer.writeEndBlock()
+		writer.writeNewline()
+	}
 }

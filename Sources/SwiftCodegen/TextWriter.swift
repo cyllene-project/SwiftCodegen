@@ -33,9 +33,14 @@ public class TextWriter: CodeWriter {
 		self.context = context
 	}
 
-	public func visitNode(_ node: CodeNode) {		
+	public func visit<T: CodeNode>(_ node: T) {		
+		visit(node)
+	}
+
+	public func visit<T: Class>(_ node: T) {		
 		node.emit(writer: self)
 	}
+	
 
 	public func visitSourceFile(_ file: SourceFile) {
 		writeFile(file: file, fileName: file.filename)
