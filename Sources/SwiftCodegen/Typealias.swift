@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// ImportDirective.swift
+// Typealias.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,12 +13,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class ImportDirective : Symbol {
+public class Typealias: Expression {
 	
-	public var testable = false
-		
-	public override func accept(visitor: CodeVisitor) {
-		visitor.visitImportDirective(self)
-	}
 	
 }
