@@ -12,6 +12,25 @@
 
 import Foundation
 
+public protocol CodeWriter: CodeVisitor {
+	
+	var newLine: String
+	
+	var indentString: String
+	
+	func writeFile(file: SourceFile, fileName: String)
+	
+	func writeString(_ string: String)
+
+	func writeNewline()
+
+	func writeEndBlock()
+	
+	func writeIndent()
+	
+	func writeBeginBlock()
+}
+
 public class CodeWriter : CodeVisitor {
 
 	var context: CodeContext
@@ -75,7 +94,7 @@ public class CodeWriter : CodeVisitor {
 		bol = true
 	}
 	
-		func writeBeginBlock() {
+	func writeBeginBlock() {
 		if !bol {
 			writeString(" ")
 		} else {
