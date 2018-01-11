@@ -38,7 +38,7 @@ public class Parameter : Variable {
 	}
 
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitParameter(self)
+		//visitor.visitParameter(self)
 	}
 	
 	public override func acceptChildren(visitor: CodeVisitor) {

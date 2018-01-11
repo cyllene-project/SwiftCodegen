@@ -15,10 +15,11 @@
 
 public class GenericType: DataType {
 	
+	public var typeParameter: DataType
 	
 	public init(typeParameter: DataType) {
-		super.init()
 		self.typeParameter = typeParameter
+		super.init()
 	}
 	
 	

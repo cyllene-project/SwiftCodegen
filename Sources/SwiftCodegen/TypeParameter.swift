@@ -16,7 +16,7 @@
 public class TypeParameter : Symbol {
 
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitTypeParameter(self)
+		//visitor.visitTypeParameter(self)
 	}
 	
 }

@@ -34,7 +34,7 @@ public class PropertyAccessor : Subroutine {
 	}
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitPropertyAccessory(self)
+		//visitor.visitPropertyAccessory(self)
 	}
 
 	public override func acceptChildren(visitor: CodeVisitor) {

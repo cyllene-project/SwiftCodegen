@@ -26,7 +26,7 @@ public class EnumValue: Symbol {
 	}
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitEnumValue(self)
+		//visitor.visitEnumValue(self)
 	}
 	
 	public override func acceptChildren(visitor: CodeVisitor) {

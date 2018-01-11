@@ -13,6 +13,8 @@
 //
 //===----------------------------------------------------------------------===//
 
+import Foundation
+
 public class TextWriter: CodeWriter {
 		
 	public var newLine: String = "\n"
@@ -31,8 +33,12 @@ public class TextWriter: CodeWriter {
 		self.context = context
 	}
 
-	public func visit(_ node: CodeNode) {		
+	public func visitNode(_ node: CodeNode) {		
 		node.emit(writer: self)
+	}
+
+	public func visitSourceFile(_ file: SourceFile) {
+		writeFile(file: file, fileName: file.filename)
 	}
 
 	public func writeFile(file: SourceFile, fileName: String) {
@@ -82,7 +88,7 @@ public class TextWriter: CodeWriter {
 		bol = true
 	}
 	
-	func writeBeginBlock() {
+	public func writeBeginBlock() {
 		if !bol {
 			writeString(" ")
 		} else {
@@ -93,20 +99,20 @@ public class TextWriter: CodeWriter {
 		indent += 1
 	}
 	
-	func writeEndBlock() {
+	public func writeEndBlock() {
 		indent -= 1
 		writeIndent()
 		writeString("}")
 		writeNewline()
 	}
 
-	func writeIndent() {
+	public func writeIndent() {
 		if !bol {
 			writeNewline()
 		}
 		
 		for _ in 0..<indent {
-			writeString(tab)
+			writeString(indentString)
 		}
 		
 		bol = false

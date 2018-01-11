@@ -22,6 +22,6 @@ public class Constructor: Subroutine {
 	public var `override` = false
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitConstructor(self)
+		//visitor.visitConstructor(self)
 	}
 }

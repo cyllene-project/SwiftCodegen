@@ -14,9 +14,9 @@ import Foundation
 
 public protocol CodeWriter: CodeVisitor {
 	
-	var newLine: String
+	var newLine: String { get set }
 	
-	var indentString: String
+	var indentString: String { get set }
 	
 	func writeFile(file: SourceFile, fileName: String)
 	
@@ -31,7 +31,7 @@ public protocol CodeWriter: CodeVisitor {
 	func writeBeginBlock()
 }
 
-public class CodeWriter : CodeVisitor {
+public class CodeWriterClass {
 
 	var context: CodeContext
 	
@@ -62,7 +62,7 @@ public class CodeWriter : CodeVisitor {
 		writeNewline()
 		writeNewline()
 					
-		sourceFile?.acceptChildren(visitor: self)
+		//sourceFile?.acceptChildren(visitor: self)
 		
 		do {
 			try sourceFile?.write(toFile: tempFileName)
@@ -306,7 +306,7 @@ public class CodeWriter : CodeVisitor {
 
 	public func visitPackage(_ package: Package) {
 		if package.name == nil {
-			package.acceptChildren(visitor: self)
+			//package.acceptChildren(visitor: self)
 			return
 		}
 		
@@ -315,11 +315,11 @@ public class CodeWriter : CodeVisitor {
 		}
 		
 		for cls in package.classes {
-			cls.accept(visitor: self)
+			//cls.accept(visitor: self)
 		} 
 		
 		for proto in package.protocols {
-			proto.accept(visitor: self)
+			//proto.accept(visitor: self)
 		} 
 	}
 	
@@ -344,7 +344,3 @@ public class CodeWriter : CodeVisitor {
 	}
 }
 
-enum CodeWriterError : Error {
-	
-	
-}

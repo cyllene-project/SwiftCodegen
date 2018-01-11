@@ -14,78 +14,9 @@
 //===----------------------------------------------------------------------===//
 
 public protocol CodeVisitor {
+
+	func visitSourceFile(_ file: SourceFile)
 	
 	func visitNode(_ node: CodeNode)
 	
-	func visitAssignment(_ assign: Assignment)
-	
-	func visitClass(_ cls: Class)
-	
-	func visitEnum(_ enm: Enum)
-	
-	func visitExpression(_ expr: Expression)
-		
-	func visitProtocol(_ prtcl: Protocol)
-	
-	func visitStruct(_ strct: Struct) 
-
-	func visitImportDirective(_ directive: ImportDirective) 
-
-	func visitConstructor(_ constructor: Constructor) 
-	
-	func visitDestructor(_ destructor: Destructor) 
-
-	func visitPackage(_ package: Package) 
-	
-	func visitParameter(_ param: Parameter) 
-	
-	func visitProperty(_ prop: Property) 
-
-	func visitPropertyAccessory(_ accessor: PropertyAccessor) 
-
-	func visitTypeParameter(_ param: TypeParameter) 
-
-	func visitSourceFile(_ file: SourceFile)
-
-	func visitMethod(_ method: Method)
-
-	func visitEnumValue(_ value: EnumValue)
-	
-}
-
-public extension CodeVisitor {
-
-	func visitAssignment(_ assign: Assignment) { }
-	
-	func visitClass(_ cls: Class) { }
-
-	func visitEnum(_ enm: Enum) { }
-	
-	func visitExpression(_ expr: Expression) { }
-
-	func visitProtocol(_ prtcl: Protocol) { }
-
-	func visitStruct(_ strct: Struct) { }
-
-	func visitImportDirective(_ directive: ImportDirective) { }
-
-	func visitConstructor(_ constructor: Constructor) { }
-
-	func visitDestructor(_ destructor: Destructor) { }
-
-	func visitPackage(_ package: Package) { }
-	
-	func visitParameter(_ param: Parameter) { }
-
-	func visitProperty(_ prop: Property) { }
-
-	func visitPropertyAccessory(_ accessor: PropertyAccessor) { }
-
-	func visitTypeParameter(_ param: TypeParameter) { }
-
-	func visitSourceFile(_ file: SourceFile) { }
-
-	func visitMethod(_ method: Method) { }
-
-	func visitEnumValue(_ value: EnumValue)	{ }
 }

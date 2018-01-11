@@ -29,7 +29,7 @@ public class Package : Symbol {
 	}
 
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitPackage(self)
+		//visitor.visitPackage(self)
 	}
 	
 	public override func acceptChildren(visitor: CodeVisitor) {

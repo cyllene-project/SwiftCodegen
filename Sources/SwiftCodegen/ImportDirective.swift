@@ -18,7 +18,7 @@ public class ImportDirective : Symbol {
 	public var testable = false
 		
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitImportDirective(self)
+		//visitor.visitImportDirective(self)
 	}
 	
 }

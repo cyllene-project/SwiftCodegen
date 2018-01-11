@@ -15,9 +15,9 @@
 
 public class DoStatement: CodeNode, Statement {
 	
-	public body: Block
+	public var body: Block
 	
-	public init(body: Block, sourceReference: SourceReference = nil) [
+	public init(body: Block, sourceReference: SourceReference? = nil) {
 		self.body = body
 		super.init()
 		self.sourceReference = sourceReference 

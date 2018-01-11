@@ -23,7 +23,7 @@ public class Protocol: ObjectTypeSymbol {
 	
 
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitProtocol(self)
+		//visitor.visitProtocol(self)
 	}
 	
 	public override func acceptChildren(visitor: CodeVisitor) {

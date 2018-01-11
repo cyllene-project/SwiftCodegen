@@ -26,7 +26,11 @@ public class CodeNode {
 	public func accept(visitor: CodeVisitor) { }
 	
 	public func acceptChildren(visitor: CodeVisitor) { }
+			
+}
+
+public extension CodeNode {
 	
-	public func emit(visitor: CodeVisitor) { }
-		
+	public func emit(writer: CodeWriter) {	}
+
 }

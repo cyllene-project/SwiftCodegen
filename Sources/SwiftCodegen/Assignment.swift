@@ -28,12 +28,7 @@ public class Assignment: Expression {
 		super.init()
 		self.sourceReference = sourceReference
 	}
-	
-	public override func accept(visitor: CodeVisitor) {
-		visitor.visitAssignment(self)
-		visitor.visitExpression(self)
-	}
-	
+		
 	public override func acceptChildren(visitor: CodeVisitor) {
 		`left`.accept(visitor: visitor)
 		`right`.accept(visitor: visitor)

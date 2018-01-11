@@ -26,7 +26,7 @@ public class Struct: TypeSymbol {
 	var destructor: Destructor?
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitStruct(self)
+		//visitor.visitStruct(self)
 	}
 	
 	public override func acceptChildren(visitor: CodeVisitor) {

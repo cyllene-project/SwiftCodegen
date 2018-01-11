@@ -32,7 +32,7 @@ public class Class : ObjectTypeSymbol {
 	public var `final` = false
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitClass(self)
+		//visitor.visitClass(self)
 	}
 	
 	public override func acceptChildren(visitor: CodeVisitor) {
@@ -67,4 +67,12 @@ public class Class : ObjectTypeSymbol {
 		
 		destructor?.accept(visitor: visitor)
 	}	
+}
+
+public extension Class {
+	
+	public override func emit(writer: CodeWriter) {
+		
+		
+	}
 }

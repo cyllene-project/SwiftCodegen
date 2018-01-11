@@ -35,7 +35,7 @@ public class Property: Symbol {
 	}
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitProperty(self)
+		//visitor.visitProperty(self)
 	}
 	
 	public override func acceptChildren(visitor: CodeVisitor) {

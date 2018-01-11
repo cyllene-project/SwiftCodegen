@@ -31,7 +31,7 @@ public class BinaryExpression: Expression {
 	
 	public override func accept(visitor: CodeVisitor) {
 		//visitor.visitAssignment(self)
-		visitor.visitExpression(self)
+		//visitor.visitExpression(self)
 	}
 	
 	public override func acceptChildren(visitor: CodeVisitor) {

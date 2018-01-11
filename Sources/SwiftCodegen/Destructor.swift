@@ -16,6 +16,6 @@
 public class Destructor: Subroutine {
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitDestructor(self)
+		//visitor.visitDestructor(self)
 	}
 }

@@ -21,7 +21,7 @@ public class Enum: TypeSymbol {
 	var properties: [Property] = []
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitEnum(self)
+		//visitor.visitEnum(self)
 	}
 
 	public override func acceptChildren(visitor: CodeVisitor) {

@@ -19,7 +19,7 @@ public class CastExpression: Expression {
 	
 	public var typeReference: DataType
 	
-	public var force
+	public var force = false
 	
 	public var unwrap = false
 	

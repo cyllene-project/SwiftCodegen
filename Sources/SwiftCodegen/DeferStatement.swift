@@ -18,7 +18,7 @@ public class DeferStatement: CodeNode {
 	public var body: Block
 	
 	public init(body: Block, sourceReference: SourceReference? = nil) {
-		self.body - body
+		self.body = body
 		super.init()
 		self.sourceReference = sourceReference 
 	}
