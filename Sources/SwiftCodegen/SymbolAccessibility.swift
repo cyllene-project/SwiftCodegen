@@ -14,8 +14,10 @@
 //===----------------------------------------------------------------------===//
 
 public enum SymbolAccessibility {
-	case `private`
-	case `internal`
+	case `open`
 	case `public`
+	case `internal`
+	case `fileprivate`
+	case `private`
 }
 
