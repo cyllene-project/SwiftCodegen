@@ -67,12 +67,49 @@ public class Class : ObjectTypeSymbol {
 		
 		destructor?.accept(visitor: visitor)
 	}	
+
+	public override func emit<T: CodeWriter>(writer: T) {
+		
+		comment?.emit(writer: writer)
+		writer.writeIndent()
+		//writer.writeAccessibility(access)
+		writer.writeString("class \(name!)")
+		
+		if baseClass != nil {
+			writer.writeString(" : \(baseClass!.name!)")
+			writer.writeString(baseTypes.isEmpty ? "" : ",")
+		} else if !baseTypes.isEmpty {
+			writer.writeString(" : ")
+		}
+		writer.writeString(baseTypes.map { t in t.dataType!.name! }.joined(separator:", "))
+		writer.writeBeginBlock()
+		
+		for cls in classes {
+			cls.emit(writer: writer)
+		}
+		
+		for strct in structs {
+			strct.emit(writer: writer)
+		}
+		
+		for prop in properties {
+			prop.emit(writer: writer)
+		}
+		
+		for meth in methods {
+			meth.emit(writer: writer)
+		}
+		
+		for enm in enums {
+			enm.emit(writer: writer)
+		}
+		
+		writer.writeEndBlock()
+		writer.writeNewline()
+	}
+
 }
 
 public extension Class {
 	
-	public override func emit(writer: CodeWriter) {
-		
-		
-	}
 }

@@ -24,6 +24,8 @@ public class Comment {
 		content = comment
 	}
 	
-	
+	public func emit(writer: CodeWriter) {
+		
+	}
 	
 }
