@@ -15,6 +15,8 @@
 
 public protocol CodeVisitor {
 	
+	func visitNode(_ node: CodeNode)
+	
 	func visitAssignment(_ assign: Assignment)
 	
 	func visitClass(_ cls: Class)
