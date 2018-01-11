@@ -15,12 +15,13 @@
 
 public class SwitchStatement: CodeNode {
 	
-	public expression: Expression
+	public var expression: Expression
 	
-	public sections: [SwitchSection] = []
+	public var sections: [SwitchSection] = []
 	
-	public init(expression: Expression, sourceReference: sourceReference? = nil) {
+	public init(expression: Expression, sourceReference: SourceReference? = nil) {
 		self.expression = expression
+		super.init()
 		self.sourceReference = sourceReference 
 	}
 	

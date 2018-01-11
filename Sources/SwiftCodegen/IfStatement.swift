@@ -23,6 +23,7 @@ public class IfStatement: CodeNode {
 		self.condition = condition
 		self.trueStatement = trueStatement
 		self.falseStatement = falseStatement
+		super.init()
 		self.sourceReference = sourceReference
 	}
 }

@@ -25,11 +25,12 @@ public class BinaryExpression: Expression {
 		self.`left` = `left`
 		self.`operator` = `operator`
 		self.`right` = `right`
+		super.init()
 		self.sourceReference = sourceReference
 	}
 	
 	public override func accept(visitor: CodeVisitor) {
-		visitor.visitAssignment(self)
+		//visitor.visitAssignment(self)
 		visitor.visitExpression(self)
 	}
 	

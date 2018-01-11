@@ -20,7 +20,8 @@ public class GuardStatement: CodeNode, Statement {
 	
 	public init(condition: Expression, elseStatement: Block, sourceReference: SourceReference? = nil) {
 		self.condition = condition
-		self.elseStatement = trueStatement
+		self.elseStatement = elseStatement
+		super.init()
 		self.sourceReference = sourceReference
 	}
 

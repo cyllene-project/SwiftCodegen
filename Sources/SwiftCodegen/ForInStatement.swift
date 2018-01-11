@@ -28,7 +28,7 @@ public class ForInStatement: Block {
 		self.variableName = variableName		
 		self.collection = collection		
 		self.body = body
-		super.init()
+		super.init(name: nil)
 	}
 	
 	

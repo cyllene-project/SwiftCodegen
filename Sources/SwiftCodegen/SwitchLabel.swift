@@ -21,6 +21,7 @@ public class SwitchLabel: CodeNode {
 	
 	public init(expression: Expression, sourceReference: SourceReference? = nil) {
 		self.expression = expression
+		super.init()
 		self.sourceReference = sourceReference
 	}
 	

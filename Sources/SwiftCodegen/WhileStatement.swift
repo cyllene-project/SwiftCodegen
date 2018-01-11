@@ -25,6 +25,7 @@ public class WhileStatement: CodeNode {
 		self.condition = condition
 		self.body = body
 		self.repeatBody = repeatBody
+		super.init()
 		self.sourceReference = sourceReference
 	}
 	

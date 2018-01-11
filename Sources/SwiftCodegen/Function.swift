@@ -17,6 +17,7 @@ public class Function: Subroutine {
 	
 	public var `final` = false
 
+	public var returnType: DataType
 	
 	public init(name: String?, returnType: DataType? = nil, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
 		self.returnType = returnType ?? VoidType();

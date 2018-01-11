@@ -15,7 +15,7 @@
 
 public class PropertyObserver: Subroutine {
 	
-	public var observerType: PropertyObserverType
+	public var observerType: PropertyObserverType = .willSet
 	
 }
 

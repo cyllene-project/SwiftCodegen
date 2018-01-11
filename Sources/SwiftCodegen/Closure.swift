@@ -22,10 +22,11 @@ public class Closure: Expression {
 	
 	public var function: Function?
 	
-	var parameters: [Parameter]
+	var parameters: [Parameter] = []
 	
 	public init(expressionBody: Expression, sourceReference: SourceReference? = nil) {
 		self.expressionBody = expressionBody
+		super.init()
 		self.sourceReference = sourceReference 
 		
 	}
