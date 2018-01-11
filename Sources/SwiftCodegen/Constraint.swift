@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Constructor.swift
+// Constraint.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,15 +13,9 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class Constructor: Subroutine {
+public class Constraint: Expression {
 	
-	public var `convenience` = false
+	public var expressions: [Expression] = []
 	
-	public var `required` = false
 	
-	public var `override` = false
-	
-	public override func accept(visitor: CodeVisitor) {
-		visitor.visitConstructor(self)
-	}
 }
