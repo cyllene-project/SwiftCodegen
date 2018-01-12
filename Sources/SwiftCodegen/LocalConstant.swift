@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// LocalVariable.swift
+// LocalConstant.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -14,9 +14,9 @@
 //===----------------------------------------------------------------------===//
 
 /**
-  A local variable declaration
+  A local constant (let) declaration
  */
-public class LocalVariable: Variable {
-		
+public class LocalConstant: Constant {
+	
 	
 }
