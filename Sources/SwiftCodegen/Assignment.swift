@@ -27,9 +27,10 @@ public class Assignment: Expression {
 		self.`right` = `right`
 		super.init(sourceReference: sourceReference)
 	}
-		
-	public override func acceptChildren(visitor: CodeVisitor) {
+	
+	public override func accept<T: CodeWriter>(visitor: T) {
 		`left`.accept(visitor: visitor)
 		`right`.accept(visitor: visitor)
 	}
+
 }

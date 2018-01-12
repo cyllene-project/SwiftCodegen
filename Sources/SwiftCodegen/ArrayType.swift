@@ -16,9 +16,10 @@
 public class ArrayType: CollectionType {
 	
 	
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
+	public override func accept<T: CodeWriter>(visitor: T) {
+		visitor.writeString("[")
 		elementType.accept(visitor: visitor)
+		visitor.writeString("]")
 	}
 
 	

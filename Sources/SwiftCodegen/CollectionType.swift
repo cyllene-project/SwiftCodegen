@@ -17,7 +17,7 @@ public class CollectionType : ReferenceType {
 	
 	public var elementType: DataType
 	
-	public init (elementType: DataType, sourceReference: SourceReference?) {
+	init (elementType: DataType, sourceReference: SourceReference?) {
 		self.elementType = elementType
 		super.init(sourceReference: sourceReference)
 	}

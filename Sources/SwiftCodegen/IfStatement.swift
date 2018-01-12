@@ -13,7 +13,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class IfStatement: CodeNode {
+public class IfStatement: CodeNode, Statement {
 	
 	public var condition: Expression
 	public var trueStatement: Block

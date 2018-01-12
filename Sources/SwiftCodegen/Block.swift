@@ -15,6 +15,14 @@
 
 public class Block : Symbol, Statement {
 	
-	var statementList: [Statement] = []
+	var statements: [Statement] = []
 	
+	public override func accept<T: CodeWriter>(visitor: T) {
+		visitor.writeBeginBlock()
+		for statement in statements {
+			
+		}
+		visitor.writeEndBlock()
+
+	}
 }
