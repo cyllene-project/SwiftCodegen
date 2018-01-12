@@ -21,7 +21,9 @@ public class CodeNode {
 	
 	public var attributes: [Attribute] = []
 	
-	public init() { }
+	public init(sourceReference: SourceReference? = nil) {
+		self.sourceReference = sourceReference
+	}
 	
 	public func accept(visitor: CodeVisitor) { }
 	

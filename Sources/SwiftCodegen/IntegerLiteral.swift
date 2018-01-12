@@ -20,9 +20,8 @@ public class IntegerLiteral: Literal {
 	public var typeSuffix: String?
 	
 	public init(value: String, sourceReference: SourceReference? = nil) {
-		
 		self.value = value
-		
+		super.init(sourceReference: sourceReference)
 	}
 	
 	

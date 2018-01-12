@@ -21,8 +21,7 @@ public class GuardStatement: CodeNode, Statement {
 	public init(condition: Expression, elseStatement: Block, sourceReference: SourceReference? = nil) {
 		self.condition = condition
 		self.elseStatement = elseStatement
-		super.init()
-		self.sourceReference = sourceReference
+		super.init(sourceReference: sourceReference)
 	}
 
 }

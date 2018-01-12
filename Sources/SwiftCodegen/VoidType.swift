@@ -14,10 +14,5 @@
 //===----------------------------------------------------------------------===//
 
 public class VoidType : DataType {
-	
-	public init(sourceReference: SourceReference? = nil) {
-		super.init()
-		self.sourceReference = sourceReference
-	}
-	
+		
 }

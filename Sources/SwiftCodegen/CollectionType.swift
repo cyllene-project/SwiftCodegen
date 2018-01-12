@@ -19,8 +19,7 @@ public class CollectionType : ReferenceType {
 	
 	public init (elementType: DataType, sourceReference: SourceReference?) {
 		self.elementType = elementType
-		super.init()
-		self.sourceReference = sourceReference
+		super.init(sourceReference: sourceReference)
 	}
 
 	

@@ -27,8 +27,7 @@ public class CastExpression: Expression {
 		self.inner = inner 
 		self.typeReference = typeReference
 		self.force = force
-		super.init()
-		self.sourceReference = sourceReference
+		super.init(sourceReference: sourceReference)
 		
 	}
 	

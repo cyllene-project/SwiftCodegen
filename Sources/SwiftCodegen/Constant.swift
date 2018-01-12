@@ -25,9 +25,9 @@ public class Constant: Symbol {
 		super.init(name: name, sourceReference: sourceReference, comment: comment)
 	}
 		
-	public override emit<T: CodeWriter>(writer: T) {
+	public override func emit<T: CodeWriter>(writer: T) {
 		
-		writer.writeString()
+		writer.writeString("")
 		
 		
 	}

@@ -22,13 +22,9 @@ public class CatchClause: CodeNode {
 	
 	
 	public init(body: Block, errorType: DataType? = nil, sourceReference: SourceReference? = nil) {
-		
 		self.body = body
 		self.errorType = errorType
-		super.init()
-		self.sourceReference = sourceReference
-		
-		
+		super.init(sourceReference: sourceReference)		
 	}
 	
 }

@@ -22,8 +22,7 @@ public class TypeCheck: Expression {
 	public init(expression: Expression, type: DataType, sourceReference: SourceReference? = nil) {
 		self.expression = expression
 		self.typeReference = type
-		super.init()
-		self.sourceReference = sourceReference
+		super.init(sourceReference: sourceReference)
 	}
 	
 	

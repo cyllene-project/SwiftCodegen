@@ -19,8 +19,7 @@ public class StringLiteral: Literal {
 	
 	public init(value: String, sourceReference: SourceReference? = nil) {
 		self.value = value
-		super.init()
-		self.sourceReference = sourceReference
+		super.init(sourceReference: sourceReference)
 	}
 	
 	
