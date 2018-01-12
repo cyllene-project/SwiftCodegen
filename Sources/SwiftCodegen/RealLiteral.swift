@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// CodeNode.swift
+// RealLiteral.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,29 +13,14 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class CodeNode {
+public class RealLiteral: Literal {
 	
-	public weak var parentNode: CodeNode?
+	public var value: String
 	
-	public var sourceReference: SourceReference?
-	
-	public var attributes: [Attribute] = []
-	
-	public init(sourceReference: SourceReference? = nil) {
-		self.sourceReference = sourceReference
+	public init(value: String, sourceReference: SourceReference? = nil) {
+		self.value = value
+		super.init(sourceReference: sourceReference)
 	}
+
 	
-	public func accept(visitor: CodeVisitor) { }
-
-	public func accept<T>(visitor: T) { }
-	
-	public func acceptChildren(visitor: CodeVisitor) { }
-			
-	public func emit<T>(writer: T) {	}
-
-}
-
-public extension CodeNode {
-	
-
 }
