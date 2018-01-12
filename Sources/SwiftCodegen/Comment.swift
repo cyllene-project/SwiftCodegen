@@ -24,12 +24,12 @@ public class Comment {
 		content = comment
 	}
 	
-	public func emit(writer: CodeWriter) {
-		writer.writeIndent()
-		writer.writeString("/*")
-		writer.writeString(content)
-		writer.writeString("*/")
-		writer.writeNewline()
+	public func accept(visitor: CodeWriter) {
+		visitor.writeIndent()
+		visitor.writeString("/*")
+		visitor.writeString(content)
+		visitor.writeString("*/")
+		visitor.writeNewline()
 	}
 	
 }

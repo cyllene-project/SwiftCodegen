@@ -20,18 +20,14 @@ public class Constructor: Subroutine {
 	public var `required` = false
 	
 	public var `override` = false
-	
-	public override func accept(visitor: CodeVisitor) {
-		//visitor.visitConstructor(self)
-	}
-	
-	public override func emit<T: CodeWriter>(writer: T) {
-		comment?.emit(writer: writer)
-		writer.writeIndent()
-		//writer.writeAccessibility(constructor.access)
-		writer.writeString("init")
-		writer.writeBeginBlock()
-		writer.writeEndBlock()
-		writer.writeNewline()
+		
+	public override func accept<T: CodeWriter>(visitor: T) {
+		comment?.accept(visitor: visitor)
+		visitor.writeIndent()
+		access.accept(visitor: visitor)
+		visitor.writeString("init")
+		visitor.writeBeginBlock()
+		visitor.writeEndBlock()
+		visitor.writeNewline()
 	}
 }

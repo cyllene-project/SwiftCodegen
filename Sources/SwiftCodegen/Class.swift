@@ -70,9 +70,9 @@ public class Class : ObjectTypeSymbol {
 
 	public override func accept<T: CodeWriter>(visitor: T) {
 		
-		comment?.emit(writer: visitor)
+		comment?.accept(visitor: visitor)
 		visitor.writeIndent()
-		//writer.writeAccessibility(access)
+		access.accept(visitor: visitor)
 		visitor.writeString("class \(name!)")
 		
 		if baseClass != nil {
@@ -85,23 +85,23 @@ public class Class : ObjectTypeSymbol {
 		visitor.writeBeginBlock()
 		
 		for cls in classes {
-			cls.emit(writer: visitor)
+			cls.accept(visitor: visitor)
 		}
 		
 		for strct in structs {
-			strct.emit(writer: visitor)
+			strct.accept(visitor: visitor)
 		}
 		
 		for prop in properties {
-			prop.emit(writer: visitor)
+			prop.accept(visitor: visitor)
 		}
 		
 		for meth in methods {
-			meth.emit(writer: visitor)
+			meth.accept(visitor: visitor)
 		}
 		
 		for enm in enums {
-			enm.emit(writer: visitor)
+			enm.accept(visitor: visitor)
 		}
 		
 		visitor.writeEndBlock()

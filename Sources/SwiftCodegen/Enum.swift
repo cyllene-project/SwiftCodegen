@@ -19,44 +19,29 @@ public class Enum: TypeSymbol {
 	var methods: [Method] = []
 	var values: [EnumValue] = []
 	var properties: [Property] = []
-	
-	public override func accept(visitor: CodeVisitor) {
-		//visitor.visitEnum(self)
-	}
-
-	public override func acceptChildren(visitor: CodeVisitor) {
-		
-		for type in baseTypes {
-			type.accept(visitor: visitor)
-		}
-		
-		for method in methods {
-			method.accept(visitor: visitor)
-		}
-	}
 
 	
-	public override func emit<T: CodeWriter>(writer: T) {
-		comment?.emit(writer: writer)
-		writer.writeIndent()
-		//writer.writeAccessibility(enm.access)
-		writer.writeString("enum \(name!)")
+	public override func accept<T: CodeWriter>(visitor: T) {
+		comment?.accept(visitor: visitor)
+		visitor.writeIndent()
+		access.accept(visitor: visitor)
+		visitor.writeString("enum \(name!)")
 		
-		writer.writeBeginBlock()
+		visitor.writeBeginBlock()
 		
 		for value in values {
-			value.emit(writer: writer)
+			value.accept(visitor: visitor)
 		}
 		
 		for prop in properties {
-			prop.emit(writer: writer)
+			prop.accept(visitor: visitor)
 		}
 		
 		for meth in methods {
-			meth.emit(writer: writer)
+			meth.accept(visitor: visitor)
 		}
 		
-		writer.writeEndBlock()
+		visitor.writeEndBlock()
 	}
 	
 }

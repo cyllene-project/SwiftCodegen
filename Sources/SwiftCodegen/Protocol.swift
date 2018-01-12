@@ -21,48 +21,29 @@ public class Protocol: ObjectTypeSymbol {
 	
 	public var properties: [Property] = []
 	
-
-	public override func accept(visitor: CodeVisitor) {
-		//visitor.visitProtocol(self)
-	}
 	
-	public override func acceptChildren(visitor: CodeVisitor) {
+	public override func accept<T: CodeWriter>(visitor: T) {
+		comment?.accept(visitor: visitor)
+		visitor.writeIndent()
+		access.accept(visitor: visitor)
+		visitor.writeString("protocol \(name!)")
 		
-		for type in prerequisites {
-			type.accept(visitor: visitor)
-		}
-		
-		for method in methods {
-			method.accept(visitor: visitor)
-		}
-		
-		for property in properties {
-			property.accept(visitor: visitor)
-		}
-	}
-	
-	public override func emit<T: CodeWriter>(writer: T) {
-		comment?.emit(writer: writer)
-		writer.writeIndent()
-		//writer.writeAccessibility(prtcl.access)
-		writer.writeString("protocol \(name!)")
-		
-		writer.writeString(prerequisites.isEmpty ? "" : ",")
+		visitor.writeString(prerequisites.isEmpty ? "" : ",")
 		if !prerequisites.isEmpty {
-			writer.writeString(" : ")
+			visitor.writeString(" : ")
 		}
-		writer.writeString(prerequisites.map { t in t.dataType!.name! }.joined(separator:", "))
-		writer.writeBeginBlock()
+		visitor.writeString(prerequisites.map { t in t.dataType!.name! }.joined(separator:", "))
+		visitor.writeBeginBlock()
 				
 		for prop in properties {
-			prop.emit(writer: writer)
+			prop.accept(visitor: visitor)
 		}
 		
 		for meth in methods {
-			meth.emit(writer: writer)
+			meth.accept(visitor: visitor)
 		}
 				
-		writer.writeEndBlock()
-		writer.writeNewline()
+		visitor.writeEndBlock()
+		visitor.writeNewline()
 	}
 }

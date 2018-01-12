@@ -20,8 +20,9 @@ public class Destructor: Subroutine {
 	}
 	
 	public override func emit<T: CodeWriter>(writer: T) {
-		comment?.emit(writer: writer)
+		comment?.accept(visitor: writer)
 		writer.writeIndent()
+		
 		//writer.writeAccessibility(constructor.access)
 		writer.writeString("deinit")
 		writer.writeBeginBlock()
