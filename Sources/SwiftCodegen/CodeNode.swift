@@ -21,7 +21,7 @@ public class CodeNode {
 	
 	public var attributes: [Attribute] = []
 	
-	public init(sourceReference: SourceReference? = nil) {
+	init(sourceReference: SourceReference? = nil) {
 		self.sourceReference = sourceReference
 	}
 	
