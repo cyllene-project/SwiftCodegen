@@ -15,7 +15,7 @@
 
 public class ThrowStatement: CodeNode, Statement {
 	
-	public errorExpression: Expression
+	public var errorExpression: Expression
 	
 	public init(errorExpression: Expression, sourceReference: SourceReference? = nil) {
 		self.errorExpression = errorExpression

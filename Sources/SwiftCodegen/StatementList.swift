@@ -15,7 +15,9 @@
 
 public class StatementList: CodeNode, Statement {
 	
-	public var statements: [Statement]
+	public var statements: [Statement] = []
 	
-	
+	public init(sourceReference: SourceReference) {
+		super.init(sourceReference: sourceReference)
+	}
 }
