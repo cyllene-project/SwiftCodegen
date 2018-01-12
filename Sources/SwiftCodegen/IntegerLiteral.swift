@@ -24,5 +24,8 @@ public class IntegerLiteral: Literal {
 		super.init(sourceReference: sourceReference)
 	}
 	
-	
+	public override func accept<T: CodeWriter>(visitor: T) {
+		visitor.writeString(value)
+	}
+
 }
