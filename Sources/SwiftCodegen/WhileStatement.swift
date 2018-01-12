@@ -17,16 +17,23 @@ public class WhileStatement: CodeNode {
 	
 	public var condition: Expression
 	
-	public var body: Block
+	public var body: Block?
 	
 	public var repeatBody: Block?
 	
-	public init(condition: Expression, body: Block, repeatBody: Block? = nil, sourceReference: SourceReference? = nil) {
+	public init(condition: Expression, body: Block? = nil, repeatBody: Block? = nil, sourceReference: SourceReference? = nil) {
 		self.condition = condition
 		self.body = body
 		self.repeatBody = repeatBody
 		super.init(sourceReference: sourceReference)
 	}
 	
-	
+	public override func accept<T: CodeWriter>(visitor: T) {
+		visitor.writeIndent()
+		repeatBody?.accept(visitor: visitor)
+		visitor.writeString("while ")
+		condition.accept(visitor: visitor)
+		body?.accept(visitor: visitor)
+	}
+
 }
