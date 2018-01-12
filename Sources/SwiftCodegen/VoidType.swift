@@ -14,5 +14,9 @@
 //===----------------------------------------------------------------------===//
 
 public class VoidType : DataType {
-		
+
+	public override func accept<T: CodeWriter>(visitor: T) {
+		visitor.writeString("Void")
+	}
+	
 }

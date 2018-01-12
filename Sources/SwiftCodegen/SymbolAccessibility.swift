@@ -21,3 +21,11 @@ public enum SymbolAccessibility {
 	case `private`
 }
 
+public extension SymbolAccessibility {
+	
+	public func accept(visitor: CodeWriter) {
+		if self != .internal {
+			visitor.writeString("\(self) ")
+		}
+	}
+}
