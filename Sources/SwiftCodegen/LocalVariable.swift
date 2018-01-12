@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Constant.swift
+// LocalVariable.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,22 +13,12 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class Constant: Symbol {
+/**
+  A local variable declaration
+ */
+public class LocalVariable: Variable {
 	
-	public var typeReference: DataType
+	public var constant = false
 	
-	public var value: Expression?
 	
-	public init(name: String, typeReference: DataType, value: Expression? = nil, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
-		self.typeReference = typeReference
-		self.value = value
-		super.init(name: name, sourceReference: sourceReference, comment: comment)
-	}
-		
-	public override emit<T: CodeWriter>(writer: T) {
-		
-		writer.writeString()
-		
-		
-	}
 }

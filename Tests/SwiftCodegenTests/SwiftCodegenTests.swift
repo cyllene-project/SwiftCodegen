@@ -3,6 +3,14 @@ import XCTest
 
 class SwiftCodegenTests: XCTestCase {
 	
+	func testConstant() {
+		
+		
+		var 
+		
+		
+	}
+	
 	func testExample() {
 		
 		let context = CodeContext()
