@@ -22,5 +22,9 @@ public class TryStatement: CodeNode, Statement {
 		super.init(sourceReference: sourceReference)
 	}
 	
-	
+	public override func accept<T: CodeWriter>(visitor: T) {
+		visitor.writeString("try")
+		expression.accept(visitor: visitor)
+	}
+
 }
