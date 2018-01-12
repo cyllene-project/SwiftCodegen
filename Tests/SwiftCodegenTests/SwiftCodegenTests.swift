@@ -7,7 +7,7 @@ class SwiftCodegenTests: XCTestCase {
 		
 		let result = "let maximumNumberOfLoginAttempts = 10"
 
-		let const = LocalConstant(name: "maximumNumberOfLoginAttempts", )
+		let const = LocalConstant(name: "maximumNumberOfLoginAttempts")
 		
 		
 	}
@@ -20,7 +20,7 @@ class SwiftCodegenTests: XCTestCase {
 		context.add(filename: path)
 		let parser = TestParser()
 		parser.parse(context: context)
-		let writer = CodeWriter(context: context)
+		let writer = TextWriter(context: context)
 		context.accept(visitor: writer)
 
 	}
@@ -33,7 +33,7 @@ class SwiftCodegenTests: XCTestCase {
 		context.add(filename: path)
 		let parser = ProtocolParser()
 		parser.parse(context: context)
-		let writer = CodeWriter(context: context)
+		let writer = TextWriter(context: context)
 		context.accept(visitor: writer)
 
 	}

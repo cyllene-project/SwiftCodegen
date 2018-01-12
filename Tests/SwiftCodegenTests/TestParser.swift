@@ -26,6 +26,10 @@ class TestParser: CodeVisitor, XMLParserDelegate {
 		context.accept(visitor: self)
 	}
 	
+	func visit<T: CodeNode>(_ node: T) {
+
+	}
+
 	public func visitSourceFile(_ file: SourceFile) {
 		sourceFile = file
 		parseFile(file: file)
