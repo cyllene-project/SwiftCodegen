@@ -68,44 +68,44 @@ public class Class : ObjectTypeSymbol {
 		destructor?.accept(visitor: visitor)
 	}	
 
-	public override func emit<T: CodeWriter>(writer: T) {
+	public override func accept<T: CodeWriter>(visitor: T) {
 		
-		comment?.emit(writer: writer)
-		writer.writeIndent()
+		comment?.emit(writer: visitor)
+		visitor.writeIndent()
 		//writer.writeAccessibility(access)
-		writer.writeString("class \(name!)")
+		visitor.writeString("class \(name!)")
 		
 		if baseClass != nil {
-			writer.writeString(" : \(baseClass!.name!)")
-			writer.writeString(baseTypes.isEmpty ? "" : ",")
+			visitor.writeString(" : \(baseClass!.name!)")
+			visitor.writeString(baseTypes.isEmpty ? "" : ",")
 		} else if !baseTypes.isEmpty {
-			writer.writeString(" : ")
+			visitor.writeString(" : ")
 		}
-		writer.writeString(baseTypes.map { t in t.dataType!.name! }.joined(separator:", "))
-		writer.writeBeginBlock()
+		visitor.writeString(baseTypes.map { t in t.dataType!.name! }.joined(separator:", "))
+		visitor.writeBeginBlock()
 		
 		for cls in classes {
-			cls.emit(writer: writer)
+			cls.emit(writer: visitor)
 		}
 		
 		for strct in structs {
-			strct.emit(writer: writer)
+			strct.emit(writer: visitor)
 		}
 		
 		for prop in properties {
-			prop.emit(writer: writer)
+			prop.emit(writer: visitor)
 		}
 		
 		for meth in methods {
-			meth.emit(writer: writer)
+			meth.emit(writer: visitor)
 		}
 		
 		for enm in enums {
-			enm.emit(writer: writer)
+			enm.emit(writer: visitor)
 		}
 		
-		writer.writeEndBlock()
-		writer.writeNewline()
+		visitor.writeEndBlock()
+		visitor.writeNewline()
 	}
 
 }
