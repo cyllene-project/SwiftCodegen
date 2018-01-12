@@ -30,3 +30,11 @@ public protocol CodeWriter: CodeVisitor {
 	
 	func writeBeginBlock()
 }
+
+public extension String {
+	
+	func accept(visitor: CodeWriter) {
+		visitor.writeString(self)
+	}
+	
+}

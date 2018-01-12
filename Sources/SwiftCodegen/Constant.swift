@@ -25,10 +25,16 @@ public class Constant: Symbol {
 		super.init(name: name, sourceReference: sourceReference, comment: comment)
 	}
 		
-	public override func emit<T: CodeWriter>(writer: T) {
+	public override func accept<T: CodeWriter>(visitor: T) {
 		
-		writer.writeString("")
-		
+		visitor.writeString("let ")
+		name?.accept(visitor: visitor)
+		visitor.writeString(": ")
+		typeReference.accept(visitor: visitor)
+		if value != nil {
+			visitor.writeString(" = ")
+			value!.accept(visitor: visitor)
+		}
 		
 	}
 }
