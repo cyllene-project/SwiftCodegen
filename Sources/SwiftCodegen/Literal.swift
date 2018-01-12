@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// LocalVariable.swift
+// Literal.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,10 +13,8 @@
 //
 //===----------------------------------------------------------------------===//
 
-/**
-  A local variable (var) declaration
- */
-public class LocalVariable: Variable {
-		
+public class Literal: Expression {
+	
+	
 	
 }

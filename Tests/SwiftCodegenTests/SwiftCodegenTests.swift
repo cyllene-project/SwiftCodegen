@@ -5,8 +5,10 @@ class SwiftCodegenTests: XCTestCase {
 	
 	func testConstant() {
 		
+		let result = "let maximumNumberOfLoginAttempts = 10"
+
 		
-		var 
+		let const = LocalConstant(name: "maximumNumberOfLoginAttempts", )
 		
 		
 	}
