@@ -19,7 +19,7 @@ public class IntegerType: ValueType {
 	
 	public var literalTypeName: String?
 
-	init(typeSymbol: Struct, literalValue: String? = nil, literalTypeName: String? - nil) {
+	init(typeSymbol: Struct, literalValue: String? = nil, literalTypeName: String? = nil) {
 		self.literalValue = literalValue
 		self.literalTypeName = literalTypeName
 		super.init(typeSymbol: typeSymbol)

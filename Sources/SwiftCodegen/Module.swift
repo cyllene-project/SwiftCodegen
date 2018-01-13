@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Statement.swift
+// Module.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,15 +13,13 @@
 //
 //===----------------------------------------------------------------------===//
 
-public protocol Statement {
+public class Module : CodeNode {
 	
-	func acceptVisitor(visitor: CodeVisitor) 
+	public var name: String
 	
-}
-
-public extension Statement where Self: CodeNode {
+	public init(name: String, sourceReference: sourceReference? = nil) {
+		self.name = name
+		super.init(sourceReference: sourceReference)
+	}
 	
-	func acceptVisitor(visitor: CodeVisitor) {
-		self.accept(visitor: visitor)
-	}	
 }
