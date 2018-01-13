@@ -5,9 +5,29 @@ class SwiftCodegenTests: XCTestCase {
 	
 	func testConstant() {
 		
-		let result = "let maximumNumberOfLoginAttempts = 10"
+		let result = "let maximumNumberOfLoginAttempts = 10\n"
 
-		//let const = Constant(name: "maximumNumberOfLoginAttempts", )
+		let writer = TestWriter()
+		
+		let const = Constant(let: "maximumNumberOfLoginAttempts", equals: 10)
+		
+		const.accept(visitor: writer)
+
+		XCTAssertEqual(writer.content, result, "Output did not mach expected result")
+		
+	}
+	
+	func testVar() {
+		
+		let result = "var currentLoginAttempt = 0\n"
+
+		let writer = TestWriter()
+		
+		let variable = Variable(var: "currentLoginAttempt", equals: 0)
+
+		vairable.accept(visitor: writer)
+
+		XCTAssertEqual(writer.content, result, "Output did not mach expected result")
 		
 		
 	}
