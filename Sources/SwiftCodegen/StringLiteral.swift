@@ -23,7 +23,7 @@ public class StringLiteral: Literal {
 	}
 	
 	public override func accept<T: CodeWriter>(visitor: T) {
-		visitor.writeString(value)
+		visitor.writeString("\"\(value)\"")
 	}
 
 }
