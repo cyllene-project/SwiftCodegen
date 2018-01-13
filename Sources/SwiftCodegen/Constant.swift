@@ -15,22 +15,29 @@
 
 public class Constant: Symbol {
 	
-	public var typeReference: DataType
+	public var typeReference: DataType?
 	
 	public var value: Expression?
 	
-	public init(name: String, typeReference: DataType, value: Expression? = nil, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
+	public init(name: String, typeReference: DataType? = nil, value: Expression? = nil, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
 		self.typeReference = typeReference
 		self.value = value
 		super.init(name: name, sourceReference: sourceReference, comment: comment)
+		self.access = .internal
 	}
 		
 	public override func accept<T: CodeWriter>(visitor: T) {
 		
+		access.accept(visitor: visitor)
 		visitor.writeString("let ")
 		name?.accept(visitor: visitor)
 		visitor.writeString(": ")
-		typeReference.accept(visitor: visitor)
+		
+		if typeReference != nil {
+			visitor.writeString(": ")
+			typeReference?.accept(visitor: visitor)
+		}
+		
 		if value != nil {
 			visitor.writeString(" = ")
 			value!.accept(visitor: visitor)
