@@ -100,13 +100,46 @@ class BasicTests: XCTestCase {
 		
 		let result = """
 		let π = 3.14159
-		let 你好 = \"你好世界\"
-		let �� = \"dogcow\"
+		let 你好 = "你好世界"
+		let �� = "dogcow"
 		"""
 
 		let writer = TestWriter()
 		
 		let variable = Variable(name: "red")
+
+		vairable.accept(visitor: writer)
+
+		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
+	}
+	
+	func testVarChange() {
+		
+		let result = """
+		var friendlyWelcome = "Hello!"
+		friendlyWelcome = "Bonjour!"
+		// friendlyWelcome is now "Bonjour!
+		"""
+
+		let writer = TestWriter()
+		
+		let variable = Variable(name: "friendlyWelcome", value: "Hello!")
+
+		vairable.accept(visitor: writer)
+
+		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
+	}
+	
+	func testPrintInterpolation() {
+		
+		let result = """
+		print("The current value of friendlyWelcome is \(friendlyWelcome)")
+		// Prints "The current value of friendlyWelcome is Bonjour!"
+		"""
+
+		let writer = TestWriter()
+		
+		let variable = Variable(name: "friendlyWelcome", value: "Hello!")
 
 		vairable.accept(visitor: writer)
 
@@ -122,5 +155,7 @@ class BasicTests: XCTestCase {
 		("testVarAssignment", testVarAssignment),
 		("testMultiVarWithType", testMultiVarWithType),
 		("testUnicodeNames", testUnicodeNames),
+		("testVarChange", testVarChange),
+		("testPrintInterpolation", testPrintInterpolation),
 	]
 }
