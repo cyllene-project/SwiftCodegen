@@ -146,6 +146,36 @@ class BasicTests: XCTestCase {
 		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
 	}
 	
+	func testComment() {
+
+		let result = "// This is a comment.\n"
+
+		let writer = TestWriter()
+		
+		let variable = Variable(name: "friendlyWelcome", value: "Hello!")
+
+		vairable.accept(visitor: writer)
+
+		XCTAssertEqual(writer.content, result, "Output did not mach expected result")
+	}
+
+	func testMultilineComment() {
+		
+		let result = """
+		/* This is also a comment
+		 but is written over multiple lines. */
+		"""
+
+		let writer = TestWriter()
+		
+		let variable = Variable(name: "friendlyWelcome", value: "Hello!")
+
+		vairable.accept(visitor: writer)
+
+		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
+	}
+	
+
 
 	static var allTests = [
 		("testConstant", testConstant),
@@ -157,5 +187,6 @@ class BasicTests: XCTestCase {
 		("testUnicodeNames", testUnicodeNames),
 		("testVarChange", testVarChange),
 		("testPrintInterpolation", testPrintInterpolation),
+		("testComment", testComment),
 	]
 }
