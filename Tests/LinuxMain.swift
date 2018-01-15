@@ -3,4 +3,5 @@ import XCTest
 
 XCTMain([
     testCase(SwiftCodegenTests.allTests),
+    testCase(BasicTests.allTests),
 ])
