@@ -15,8 +15,8 @@
 
 public protocol BasicBlock {
 	
-	var nodes: [CodeNode] = []
+	var nodes: [CodeNode] { get set }
 	
-	var parent: [BasicBlock] = []
+	var parent: [BasicBlock] { get set }
 	
 }

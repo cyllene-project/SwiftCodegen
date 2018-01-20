@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Block.swift
+// ReferenceType.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,8 +13,6 @@
 //
 //===----------------------------------------------------------------------===//
 
-public protocol Block : Symbol, Statement {
-	
-	var statements: [Statement] { get set }
-	
+public protocol ReferenceType: DataType {
+
 }

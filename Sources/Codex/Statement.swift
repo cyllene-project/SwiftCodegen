@@ -13,15 +13,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-public protocol Statement {
+public protocol Statement: CodeNode {
 	
-	func acceptVisitor(visitor: CodeVisitor) 
 	
-}
-
-public extension Statement where Self: CodeNode {
-	
-	func acceptVisitor(visitor: CodeVisitor) {
-		self.accept(visitor: visitor)
-	}	
 }
