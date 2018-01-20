@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Block.swift
+// BasicBlock.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,8 +13,10 @@
 //
 //===----------------------------------------------------------------------===//
 
-public protocol Block : Symbol, Statement {
+public protocol BasicBlock {
 	
-	var statements: [Statement]
+	var nodes: [CodeNode] = []
+	
+	var parent: [BasicBlock] = []
 	
 }
