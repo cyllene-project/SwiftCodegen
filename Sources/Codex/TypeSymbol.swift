@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// CodeNode.swift
+// TypeSymbol.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,16 +13,16 @@
 //
 //===----------------------------------------------------------------------===//
 
-public protocol CodeNode {
+public protocol TypeSymbol: Symbol {
 	
-	weak var parentNode: CodeNode? { get set }
+	var isReferenceType: Bool
 	
-	var sourceReference: SourceReference? { get set }
-	
-	func accept<T>(visitor: T)
+	func isSubtypeOf(type: TypeSymbol)
 	
 }
 
-public extension CodeNode {
-	public func accept<T>(visitor: T) { }
+public extension TypeSymbol {
+
+	
+
 }

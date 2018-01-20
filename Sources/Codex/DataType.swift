@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// CodeNode.swift
+// DataType.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,16 +13,10 @@
 //
 //===----------------------------------------------------------------------===//
 
-public protocol CodeNode {
+public protocol DataType: CodeNode {
 	
-	weak var parentNode: CodeNode? { get set }
+	var nilable: Bool { get set }
 	
-	var sourceReference: SourceReference? { get set }
+	var dataType: TypeSymbol? { get set }
 	
-	func accept<T>(visitor: T)
-	
-}
-
-public extension CodeNode {
-	public func accept<T>(visitor: T) { }
 }

@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// CodeNode.swift
+// Expression.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,16 +13,16 @@
 //
 //===----------------------------------------------------------------------===//
 
-public protocol CodeNode {
-	
-	weak var parentNode: CodeNode? { get set }
-	
-	var sourceReference: SourceReference? { get set }
-	
-	func accept<T>(visitor: T)
-	
-}
+public protocol Expression : CodeNode {
 
-public extension CodeNode {
-	public func accept<T>(visitor: T) { }
+	var valueType: DataType? { get set }
+	
+	var targetType: DataType? { get set }
+	
+	weak var symbolReference: Symbol? { get set }
+	
+	var lvalue: Bool { get set }
+	
+	var targetValue: TargetValue?  { get set }
+
 }
