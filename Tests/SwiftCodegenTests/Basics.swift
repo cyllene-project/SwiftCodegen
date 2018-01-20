@@ -39,7 +39,7 @@ class BasicTests: XCTestCase {
 		
 		let variable = Variable(name: "currentLoginAttempt", value: 0)
 
-		vairable.accept(visitor: writer)
+		variable.accept(visitor: writer)
 
 		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
 	}
@@ -50,9 +50,13 @@ class BasicTests: XCTestCase {
 
 		let writer = TestWriter()
 		
-		let variable = Variable(name: "x", value: 0.0)
+		let x = Variable(name: "x", value: 0.0)
+		let y = Variable(name: "y", value: 0.0)
+		let z = Variable(name: "z", value: 0.0)
 
-		vairable.accept(visitor: writer)
+		
+
+		variable.accept(visitor: writer)
 
 		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
 	}
@@ -65,7 +69,7 @@ class BasicTests: XCTestCase {
 		
 		let variable = Variable(name: "welcomeMessage")
 
-		vairable.accept(visitor: writer)
+		variable.accept(visitor: writer)
 
 		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
 	}
@@ -78,7 +82,7 @@ class BasicTests: XCTestCase {
 		
 		let variable = Variable(name: "welcomeMessage")
 
-		vairable.accept(visitor: writer)
+		variable.accept(visitor: writer)
 
 		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
 	}
@@ -91,7 +95,7 @@ class BasicTests: XCTestCase {
 		
 		let variable = Variable(name: "red")
 
-		vairable.accept(visitor: writer)
+		variable.accept(visitor: writer)
 
 		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
 	}
@@ -108,7 +112,7 @@ class BasicTests: XCTestCase {
 		
 		let variable = Variable(name: "red")
 
-		vairable.accept(visitor: writer)
+		variable.accept(visitor: writer)
 
 		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
 	}
@@ -125,7 +129,7 @@ class BasicTests: XCTestCase {
 		
 		let variable = Variable(name: "friendlyWelcome", value: "Hello!")
 
-		vairable.accept(visitor: writer)
+		variable.accept(visitor: writer)
 
 		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
 	}
@@ -141,7 +145,7 @@ class BasicTests: XCTestCase {
 		
 		let variable = Variable(name: "friendlyWelcome", value: "Hello!")
 
-		vairable.accept(visitor: writer)
+		variable.accept(visitor: writer)
 
 		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
 	}
@@ -154,7 +158,7 @@ class BasicTests: XCTestCase {
 		
 		let variable = Variable(name: "friendlyWelcome", value: "Hello!")
 
-		vairable.accept(visitor: writer)
+		variable.accept(visitor: writer)
 
 		XCTAssertEqual(writer.content, result, "Output did not mach expected result")
 	}
@@ -170,7 +174,24 @@ class BasicTests: XCTestCase {
 		
 		let variable = Variable(name: "friendlyWelcome", value: "Hello!")
 
-		vairable.accept(visitor: writer)
+		variable.accept(visitor: writer)
+
+		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
+	}
+
+	func testNestedComments() {
+		
+		let result = """
+		/* This is the start of the first multiline comment.
+		 /* This is the second, nested multiline comment. */
+		 This is the end of the first multiline comment. */
+		"""
+
+		let writer = TestWriter()
+		
+		let variable = Variable(name: "friendlyWelcome", value: "Hello!")
+
+		variable.accept(visitor: writer)
 
 		XCTAssertEqual(writer.content, result, "Output did not mach expected result")		
 	}
@@ -188,5 +209,7 @@ class BasicTests: XCTestCase {
 		("testVarChange", testVarChange),
 		("testPrintInterpolation", testPrintInterpolation),
 		("testComment", testComment),
+		("testMultilineComment", testMultilineComment),
+		("testNestedComments", testNestedComments),
 	]
 }

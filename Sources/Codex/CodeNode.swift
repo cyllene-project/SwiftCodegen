@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Module.swift
+// CodeNode.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,13 +13,18 @@
 //
 //===----------------------------------------------------------------------===//
 
-public class Module : CodeNode {
+public protocol CodeNode {
 	
-	public var name: String
+	weak var parentNode: CodeNode? { get set }
 	
-	public init(name: String, sourceReference: SourceReference? = nil) {
-		self.name = name
-		super.init(sourceReference: sourceReference)
-	}
+	var sourceReference: SourceReference? { get set }
 	
+	var attributes: [Attribute] { get set }
+
+	func accept<T>(visitor: T)
+	
+}
+
+public extension CodeNode {
+	public func accept<T>(visitor: T) { }
 }

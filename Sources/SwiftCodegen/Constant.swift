@@ -13,6 +13,10 @@
 //
 //===----------------------------------------------------------------------===//
 
+/**
+  A local constant (let) declaration
+ */
+
 public class Constant: Symbol {
 	
 	public var typeReference: DataType?
@@ -25,7 +29,17 @@ public class Constant: Symbol {
 		super.init(name: name, sourceReference: sourceReference, comment: comment)
 		self.access = .internal
 	}
+	
+	public convenience init<T>(name: String, value: T, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
+		if value is SignedInteger {
+			
+		} else if value is UnsignedInteger {
+			
+		} else if value is 
 		
+		
+	}
+	
 	public override func accept<T: CodeWriter>(visitor: T) {
 		
 		access.accept(visitor: visitor)
