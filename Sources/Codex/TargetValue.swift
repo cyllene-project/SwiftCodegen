@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Literal.swift
+// TargetValue.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,10 +13,9 @@
 //
 //===----------------------------------------------------------------------===//
 
-
-/**
-  Represents a literal expression
- */
-public protocol Literal: Expression {
+public struct TargetValue {
 	
+	public var valueType: DataType?
+	public var actualValueType: DataType?
+
 }
