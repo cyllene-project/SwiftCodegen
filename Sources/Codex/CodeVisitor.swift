@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Expression.swift
+// CodeVisitor.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,18 +13,10 @@
 //
 //===----------------------------------------------------------------------===//
 
-public protocol Expression : CodeNode {
+public protocol CodeVisitor {
 
-	var valueType: DataType? { get set }
+	func visitSourceFile(_ file: SourceFile)
 	
-	var targetType: DataType? { get set }
+	func visit<T: CodeNode>(_ node: T)
 	
-	weak var symbolReference: Symbol? { get set }
-	
-	var lvalue: Bool { get set }
-	
-	var targetValue: TargetValue?  { get set }
-
-	var isConstant: Bool { get }
-
 }

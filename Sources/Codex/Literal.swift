@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Expression.swift
+// Literal.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -13,18 +13,10 @@
 //
 //===----------------------------------------------------------------------===//
 
-public protocol Expression : CodeNode {
 
-	var valueType: DataType? { get set }
+/**
+   Represents a literal expression
+ */
+public protocol Literal: Expression {
 	
-	var targetType: DataType? { get set }
-	
-	weak var symbolReference: Symbol? { get set }
-	
-	var lvalue: Bool { get set }
-	
-	var targetValue: TargetValue?  { get set }
-
-	var isConstant: Bool { get }
-
 }

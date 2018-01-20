@@ -1,5 +1,5 @@
 //===----------------------------------------------------------------------===//
-// Attribute.swift
+// Subroutine.swift
 // 
 // This source file is part of the Cyllene open source project
 // https://github.com/cyllene-project
@@ -12,13 +12,11 @@
 // See http://www.apache.org/licenses/LICENSE-2.0 for license information
 //
 //===----------------------------------------------------------------------===//
+public protocol Subroutine: Symbol {
+	
+	var entryBlock: BasicBlock?
+	var returnBlock: BasicBlock?
+	var exitBlock: BasicBlock?
 
-public class Attribute: CodeNode {
-	
-	public var name: String
-	
-	public init(name: String, sourceReference: SourceReference? = nil) {
-		self.name = name
-		super.init(sourceReference: sourceReference)
-	}
+	var body: Block?
 }
