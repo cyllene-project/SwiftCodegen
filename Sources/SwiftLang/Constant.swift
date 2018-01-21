@@ -13,16 +13,21 @@
 //
 //===----------------------------------------------------------------------===//
 
+import Codex
+
 /**
   A local constant (let) declaration
  */
-
 public class Constant: Symbol {
+
+	// CodeNode protocol
 
 	public weak var parentNode: CodeNode? { get set }
 	
 	public var sourceReference: SourceReference? { get set }
 		
+	// Symbol protocol
+	
 	public var name: String?
 	
 	public var deprecated: Bool = false
@@ -33,7 +38,8 @@ public class Constant: Symbol {
 	
 	public var comment: Comment?
 
-	
+	// Constant implementation
+
 	public var value: Expression?
 	
 	public init(name: String, typeReference: DataType? = nil, value: Expression? = nil, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
@@ -48,8 +54,7 @@ public class Constant: Symbol {
 			
 		} else if value is UnsignedInteger {
 			
-		} else if value is 
-		
+		}
 		
 	}
 	
