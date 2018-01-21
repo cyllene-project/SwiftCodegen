@@ -18,8 +18,21 @@
  */
 
 public class Constant: Symbol {
+
+	public weak var parentNode: CodeNode? { get set }
+	
+	public var sourceReference: SourceReference? { get set }
+		
+	public var name: String?
+	
+	public var deprecated: Bool = false
+	
+	public var access: SymbolAccessibility = .internal
 	
 	public var typeReference: DataType?
+	
+	public var comment: Comment?
+
 	
 	public var value: Expression?
 	
