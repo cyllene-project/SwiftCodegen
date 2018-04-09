@@ -13,6 +13,8 @@
 //
 //===----------------------------------------------------------------------===//
 
+import Codex
+
 public class DataType: CodeNode {
 	
 	public var nullable: Bool = false

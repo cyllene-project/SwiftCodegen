@@ -15,7 +15,7 @@
 
 public struct SourceReference {
 	
-	public weak var file: SourceFile?
+	public var file: SourceFile?
 	
 	public var begin: SourceLocation
 	

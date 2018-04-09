@@ -19,7 +19,7 @@ public protocol Expression : CodeNode {
 	
 	var targetType: DataType? { get set }
 	
-	weak var symbolReference: Symbol? { get set }
+	var symbolReference: Symbol? { get set }
 	
 	var lvalue: Bool { get set }
 	

@@ -15,7 +15,7 @@
 
 public protocol TypeSymbol: Symbol {
 	
-	var isReferenceType: Bool
+	var isReferenceType: Bool { get }
 	
 	func isSubtypeOf(type: TypeSymbol)
 	

@@ -15,7 +15,7 @@
 
 public protocol CodeNode {
 	
-	weak var parentNode: CodeNode? { get set }
+	var parentNode: CodeNode? { get set }
 	
 	var sourceReference: SourceReference? { get set }
 	

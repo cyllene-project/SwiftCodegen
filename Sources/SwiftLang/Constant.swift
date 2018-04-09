@@ -22,9 +22,9 @@ public class Constant: Symbol {
 
 	// CodeNode protocol
 
-	public weak var parentNode: CodeNode? { get set }
+	public weak var parentNode: CodeNode?
 	
-	public var sourceReference: SourceReference? { get set }
+	public var sourceReference: SourceReference?
 		
 	// Symbol protocol
 	
@@ -45,17 +45,14 @@ public class Constant: Symbol {
 	public init(name: String, typeReference: DataType? = nil, value: Expression? = nil, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
 		self.typeReference = typeReference
 		self.value = value
-		super.init(name: name, sourceReference: sourceReference, comment: comment)
-		self.access = .internal
+		self.name = name
+		self.sourceReference = sourceReference
+		self.comment = comment
 	}
 	
-	public convenience init<T>(name: String, value: T, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
-		if value is SignedInteger {
-			
-		} else if value is UnsignedInteger {
-			
-		}
+	public convenience init<T: SignedInteger>(name: String, value: T, sourceReference: SourceReference? = nil, comment: Comment? = nil) {
 		
+		//self.init(name: name,
 	}
 	
 	public override func accept<T: CodeWriter>(visitor: T) {

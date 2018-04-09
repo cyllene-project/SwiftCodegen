@@ -13,6 +13,8 @@
 //
 //===----------------------------------------------------------------------===//
 
+import Codex
+
 public class BasicBlock {
 	
 	var nodes: [CodeNode] = []

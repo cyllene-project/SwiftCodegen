@@ -14,9 +14,9 @@
 //===----------------------------------------------------------------------===//
 public protocol Subroutine: Symbol {
 	
-	var entryBlock: BasicBlock?
-	var returnBlock: BasicBlock?
-	var exitBlock: BasicBlock?
+	var entryBlock: BasicBlock? { get set }
+	var returnBlock: BasicBlock? { get set }
+	var exitBlock: BasicBlock? { get set }
 
-	var body: Block?
+	var body: Block? { get set }
 }

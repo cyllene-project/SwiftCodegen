@@ -15,13 +15,13 @@
 
 public protocol SourceFile {
 	
-	var filename: String
+	var filename: String { get set }
 	
-	var comments: [Comment] = []
-
-	var nodes: [CodeNode] = []
+	var comments: [Comment] { get set }
 	
-	func write(toFile: String? = nil) throws
+	var nodes: [CodeNode] { get set }
+	
+	func write(toFile: String?) throws
 	
 	func accept<E>(visitor: E)
 
